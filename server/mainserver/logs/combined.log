@@ -1,0 +1,67 @@
+info: MONGO_URI: undefined {"timestamp":"2024-05-29T14:36:36.614+01:00"}
+info: DATABASE NAME undefined {"timestamp":"2024-05-29T14:36:36.623+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8000  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8000...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-05-29T14:36:36.780+01:00"}
+info: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. {"timestamp":"2024-05-29T14:36:36.797+01:00"}
+info: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. {"timestamp":"2024-05-29T14:36:36.799+01:00"}
+info: MONGO_URI: undefined {"timestamp":"2024-05-29T14:38:50.501+01:00"}
+info: DATABASE NAME undefined {"timestamp":"2024-05-29T14:38:50.512+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8000  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8000...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-05-29T14:38:50.681+01:00"}
+info: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. {"timestamp":"2024-05-29T14:38:50.699+01:00"}
+info: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. {"timestamp":"2024-05-29T14:38:50.701+01:00"}
+info: MONGO_URI: undefined {"timestamp":"2024-05-29T14:40:20.088+01:00"}
+info: DATABASE NAME undefined {"timestamp":"2024-05-29T14:40:20.096+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8000  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8000...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-05-29T14:40:20.246+01:00"}
+info: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. {"timestamp":"2024-05-29T14:40:20.263+01:00"}
+info: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. {"timestamp":"2024-05-29T14:40:20.265+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-05-29T14:41:06.457+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-05-29T14:41:06.464+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8000  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8000...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-05-29T14:41:06.625+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-05-29T14:41:06.713+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-05-29T14:41:06.714+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-05-29T14:42:21.973+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-05-29T14:42:21.982+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8000  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8000...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-05-29T14:42:22.166+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-05-29T14:42:22.206+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-05-29T14:42:22.207+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-05-29T14:44:30.461+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-05-29T14:44:30.474+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8000  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8000...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-05-29T14:44:30.740+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-05-29T14:44:30.791+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-05-29T14:44:30.794+01:00"}
+info: Mongoose connection is disconnected {"timestamp":"2024-05-29T14:44:35.740+01:00"}

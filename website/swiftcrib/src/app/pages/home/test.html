@@ -1,0 +1,66 @@
+<html>
+    <style>
+        *,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+#loading-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#loading-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-svg {
+  width: 160px;
+  height: 160px;
+}
+
+#content {
+  text-align: center;
+  display: none;
+}
+
+    </style>
+    <body>
+        <!-- <div id="loading-container"> -->
+            <svg class="loading-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+              <circle cx="80" cy="80" r="55" fill="none" stroke="black" stroke-width="40" />
+              <g transform="translate(80, 80)">
+                <circle cx="0" cy="0" r="55" fill="none" stroke="white" stroke-width="35" stroke-dasharray="0, 345" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0" to="360" begin="0s" dur="0.75s" repeatCount="indefinite" />
+                  <animate attributeName="stroke-dasharray" values="0, 345; 172.5, 172.5; 0, 345" dur="1.5s" repeatCount="indefinite" />
+                </circle>
+              </g>
+            </svg>
+          <!-- </div> -->
+          
+    </body>
+</html>

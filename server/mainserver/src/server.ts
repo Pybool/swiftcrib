@@ -2,37 +2,30 @@ import express from "express";
 import http from "http";
 import "./setup/init.redis";
 import "./setup/init.mongo";
-// import "./setup/kafkaProducer";
-import cors from "./setup/cors";
+import cors, { CorsOptions } from "cors";
 import { config as dotenvConfig } from "dotenv";
 import logger from "./setup/logger";
 import session from "express-session";
 import passport from "passport";
 import app from "./setup/_app";
-import { existsSync, mkdirSync } from 'fs';
+import authRouter from "./routes/v1/authentication.route";
+import portalRouter from "./routes/v1/portal.route";
+import listingRouter from "./routes/v1/listing.route";
+import spaceRouter from "./routes/v1/space.routes";
+import { getUserCountry } from "./helpers/misc";
+import devCreateListings from "./development";
+import development from "./development";
 dotenvConfig();
-dotenvConfig({path:`.env.${process.env.NODE_ENV}`});
-
-function createfolder(folderUrl: string) {
-  console.log('Checking if public directory exists:', folderUrl);
-  if (!existsSync(folderUrl)) {
-      console.log('Directory does not exist, creating:', folderUrl);
-      try {
-          mkdirSync(folderUrl, { recursive: true });
-          console.log('Directory created successfully');
-      } catch (err) {
-          console.error('Error creating directory:', err);
-      }
-  } else {
-      console.log('Directory already exists:', folderUrl);
-  }
-}
-createfolder(process.env.PUBLIC_FOLDER!)
-
+dotenvConfig({ path: `.env.${process.env.NODE_ENV}` });
 
 const SERVER_URL = "0.0.0.0";
-// Store WebSocket connections in a map
-app.use(cors);
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(
   session({
@@ -41,18 +34,47 @@ app.use(
     secret: "SECRET",
   })
 );
-app.use(express.json({ limit: "100mb" }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.use(express.static(process.env.PUBLIC_FOLDER!));
+app.use(express.static(process.env.SWIFTCRIB_PUBLIC_FOLDER!));
+app.get('/test', (req:any, res:any) => {
+  res.status(200).send('Hello from Swiftcrib Backend Server\n');
+});
 
-// app.use("/api/v1/authentication", AuthRoute);
+app.get("/ip", async (req, res) => {
+  const result = await getUserCountry(req);
+  res.send({
+    status: true,
+    data: result,
+  });
+});
 
-app.use((err:any, req:any, res:any, next:any) => {
+app.get("/dev-create-listings", async (req, res) => {
+  const result = await development.devCreateListings();
+  res.send({
+    status: true,
+    data: result,
+  });
+});
+
+app.get("/add-beds-baths", async (req, res) => {
+  const result = await development.addPriceBedAndBaths();
+  res.send({
+    status: true,
+    data: result,
+  });
+});
+
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/portal", portalRouter);
+app.use("/api/v1/listing", listingRouter);
+app.use("/api/v1/space", spaceRouter);
+
+
+
+app.use((err: any, req: any, res: any, next: any) => {
   console.error(err.stack);
 
   if (res.headersSent) {
@@ -60,23 +82,21 @@ app.use((err:any, req:any, res:any, next:any) => {
   }
 
   if (err instanceof SyntaxError) {
-    return res.status(400).json({ error: 'Invalid JSON' });
+    return res.status(400).json({ error: "Invalid JSON" });
   }
 
-  res.status(500).json({ error: 'Something went wrong 5xx' });
+  res.status(500).json({ error: "Something went wrong 5xx" });
 });
 
-app.use(function (err:any, req:any, res:any, next:any) {
-  
+app.use(function (err: any, req: any, res: any, next: any) {
   res.locals.message = err.message;
-  res.locals.error = process.env.NODE_ENV === 'dev' ? err : {};
+  res.locals.error = process.env.NODE_ENV === "dev" ? err : {};
   res.status(err.status || 500);
-  res.json({"message": 'Something went wrong 5xx ' + err});
+  res.json({ message: "Something went wrong 5xx " + err });
 });
 
-
-if (!process.env.NODE_ENV){
-  process.exit(1)
+if (!process.env.NODE_ENV) {
+  process.exit(1);
 }
 
 app.use((req, res, next) => {
@@ -96,13 +116,12 @@ app.use((err: any, req: any, res: any, next: any) => {
 app.set("view engine", "ejs");
 app.set("views", "src/views/templates");
 
-
 const server = http.createServer(app);
-const PORT = 8000 || process.env.MAIN_SERVER_PORT || 8000;
+const PORT = process.env.SWIFTCRIB_MAIN_SERVER_PORT || 8000;
 
-let environment = "Development"
-if(process.env.NODE_ENV=== 'prod'){
-  environment = "Production"
+let environment = "Development";
+if (process.env.NODE_ENV === "prod") {
+  environment = "Production";
 }
 
 function generateAsciiArt(text: string) {

@@ -1,0 +1,1 @@
+.accordionTitle+.accordionContent{max-height:0;overflow:hidden;padding:0;transition:all .3s ease}.accordionTitle.is-open+.accordionContent{max-height:200px;padding:20px 0}.accordionTitle.is-open .title{color:#2e48da}.accordionTitle+.title{color:#000}.accordionTitle.is-open .dropdown-icon{transform:rotate(180deg)}

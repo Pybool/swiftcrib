@@ -1,0 +1,1 @@
+import{_ as a,aA as _,aB as c,aC as r}from"./C5das2kd.js";import{M as i,I as m,P as e,T as f}from"./p-XyVM-N.js";const l={};function p(o,b){const t=_,n=c,s=r;return i(),m("div",null,[e(t),e(n),f(o.$slots,"default"),e(s)])}const v=a(l,[["render",p]]);export{v as default};

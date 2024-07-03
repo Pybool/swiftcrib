@@ -19,7 +19,7 @@ const AccountSchema = new Schema({
     required: false,
     default: null,
   },
-  email_confirmed: {
+  emailConfirmed: {
     type: Boolean,
     required: true,
     default: false,
@@ -38,6 +38,35 @@ const AccountSchema = new Schema({
     type: String,
     required: false,
     default: "",
+  },
+  altPhone: {
+    type: String,
+    required: false,
+    default: "",
+  },
+  street: {
+    type: String,
+    default: "",
+  },
+  city: {
+    type: String,
+    required: false,
+    default: "",
+  },
+  stateOfResidence: {
+    type: String,
+    required: false,
+    default: "Lagos",
+  },
+  stateOfOrigin: {
+    type: String,
+    required: false,
+    default: "Lagos",
+  },
+  country: {
+    type: String,
+    required: false,
+    default: "Nigeria",
   },
   avatar: {
     type: String,
@@ -110,11 +139,24 @@ AccountSchema.methods.isValidPassword = async function (password: string) {
   }
 };
 
+AccountSchema.pre('save', async function (next) {
+  try {
+    if (this.isNew) {
+      const salt = await bcrypt.genSalt(10)
+      const hashedPassword = await bcrypt.hash(this.password || "!00000000QWE", salt)
+      this.password = hashedPassword
+    }
+    next()
+  } catch (error:any) {
+    next(error)
+  }
+})
+
 AccountSchema.pre('find', function(next) {
   this.select({ password: 0 });
   next();
 });
 
 
-const Accounts = mongoose.model("Account", AccountSchema);
+const Accounts = mongoose.model("accounts", AccountSchema);
 export default Accounts;

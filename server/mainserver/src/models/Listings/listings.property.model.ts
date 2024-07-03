@@ -6,40 +6,35 @@ const ListingsSchema = new Schema({
   propertyOwner: {
     type: Schema.Types.ObjectId,
     ref: "accounts",
-    required: true,
+    required: false,
   },
-  listingDetail: {
-    type: Schema.Types.ObjectId,
-    ref: "listingdetails",
-    required: true,
-  },
-  listingSpaces: {
-    type: [Schema.Types.ObjectId],
-    ref: "listingspaces",
+  propertyOwnerNoAuth: {
+    type: String,
+    default: "",
     required: false,
   },
   dwellingType: {
     type: String,
     default: constants.listingsConstants.DWELLING_TYPES[0],
-    required: false,
+    required: true,
     enum: constants.listingsConstants.DWELLING_TYPES,
   },
   occupancyStatus: {
     type: String,
     default: constants.listingsConstants.OCCUPANCY_STATUS[0],
-    required: false,
+    required: true,
     enum: constants.listingsConstants.OCCUPANCY_STATUS,
   },
   listingCategory: {
     type: String,
     default: "MIDDLE CLASS",
-    required: false,
+    required: true,
     enum: constants.listingsConstants.LISTING_CATEGORIES,
   },
   listingMedia: {
     type: [],
     default: [],
-    required: false,
+    required: true,
   },
   propertyCondition: {
     type: String,
@@ -60,12 +55,22 @@ const ListingsSchema = new Schema({
   propertySize: {
     type: String,
     default: "",
-    required: false,
+    required: true,
   },
   propertyOverview: {
     type: String,
     default: "",
-    required: false,
+    required: true,
+  },
+  address: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  slug: {
+    type: String,
+    default: "",
+    required: true,
   },
   approvalStatus: {
     type: String,
@@ -77,7 +82,12 @@ const ListingsSchema = new Schema({
     ref: "accounts",
     required: false,
   },
-  listedTime: {
+  createdAt: {
+    type: Date,
+    default: "",
+    required: false,
+  },
+  updatedAt: {
     type: Date,
     default: "",
     required: false,
@@ -92,8 +102,80 @@ const ListingsSchema = new Schema({
     default: "",
     required: false,
   },
+
+  state: {
+    type: String,
+    default: "Oyo",
+    required: false,
+  },
+  lga: {
+    type: String,
+    default: "",
+    required: false,
+  },
+  street: {
+    type: String,
+    default: "",
+    required: false,
+  },
+
+  beds: {
+    type: Number,
+    default: 1,
+    required: false,
+  },
+  baths: {
+    type: Number,
+    default: 1,
+    required: false,
+  },
+  fullPrice: {
+    type: Number,
+    default: 0.00,
+    required: false,
+  },
+
+  spaces: [],
+  amenities: [],
 });
 
-const Listing = mongoose.model("listings", ListingsSchema);
+const Listing = mongoose.model("listing", ListingsSchema);
 
 export default Listing;
+
+const payload = {
+  propertyOwnerNoAuth: "John Doe",
+  dwellingType: "Multiple Dwelling",
+  occupancyStatus: "Vacant",
+  listingCategory: "MIDDLE CLASS",
+  listingMedia: [
+    {
+      type: "image",
+      url: "https://example.com/images/property1.jpg",
+    },
+    {
+      type: "image",
+      url: "https://example.com/images/property2.jpg",
+    },
+    {
+      type: "image",
+      url: "https://example.com/images/property3.jpg",
+    },
+    {
+      type: "video",
+      url: "https://example.com/videos/property1.mp4",
+    },
+  ],
+  propertyCondition: "New",
+  listingTags: ["pool", "garage", "garden"],
+  description:
+    "A newly built multiple dwelling property located in a serene neighborhood. It features modern amenities and spacious rooms, perfect for a family looking for comfort and convenience.",
+  propertySize: "3500 sq ft",
+  propertyOverview:
+    "This property includes 4 bedrooms, 3 bathrooms, a modern kitchen, a large living room, and a backyard with a swimming pool. It's located near schools, shopping centers, and public transportation.",
+  approvalStatus: "PENDING",
+  listedBy: "60c72b2f9b1e8a6b9f1e4b9b", // Example ObjectId for the account
+  createdAt: new Date("2023-06-15T10:00:00Z"),
+  approvedBy: "60c72b2f9b1e8a6b9f1e4b9c", // Example ObjectId for the approving account
+  approvalTime: new Date("2023-06-20T15:00:00Z"),
+};

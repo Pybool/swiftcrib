@@ -17,13 +17,14 @@ const listingsConstants: ListingsConstants = {
   PROPERTY_MANAGEMENT: ["External", "Swiftcrib"],
   PROPERTY_OWNERSHIP: ["Individual", "Corporate", "Swiftcrib"],
   PROPERTY_CONDITION: [
-    "Excellent",
     "New",
     "Well Maintained",
     "Significant Repairs",
+    "Excellent",
+    "Good"
   ],
   APPROVAL_STATUS: ["PENDING", "VERIFIED", "APPROVED", "SUSPENDED"],
-  LISTING_CATEGORIES: ["ROYAL","EXECUTIVE","MIDDLE CLASS","LOWER CLASS","COUNTRY HARD"]
+  LISTING_CATEGORIES: ["ROYAL","EXECUTIVE","MIDDLE CLASS","HIGH CLASS", "UPPER MIDDLE CLASS", "COUNTRY HARD"]
 };
 
 const constants = {

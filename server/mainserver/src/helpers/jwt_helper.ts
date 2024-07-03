@@ -7,13 +7,13 @@ const jwthelper = {
   signAccessToken: (accountId: string, type = "") => {
     return new Promise((resolve, reject) => {
       const payload = {};
-      const secret = process.env.ACCESS_TOKEN_SECRET as string;
+      const secret = process.env.SWIFTCRIB_ACCESS_TOKEN_SECRET as string;
       const options = {
-        expiresIn: "600s",
-        issuer: process.env.ISSUER,
+        expiresIn: "6000000s",
+        issuer: process.env.SWIFTCRIB_ISSUER,
         audience: accountId,
       };
-      
+
       JWT.sign(payload, secret, options, (err, token) => {
         if (err) {
           console.log(err.message);
@@ -23,7 +23,7 @@ const jwthelper = {
         resolve(token);
       });
     }).catch((error: any) => {
-      console.log(error)
+      console.log(error);
       throw error;
     });
   },
@@ -36,7 +36,7 @@ const jwthelper = {
       const token = bearerToken[1];
       JWT.verify(
         token,
-        process.env.ACCESS_TOKEN_SECRET as string,
+        process.env.SWIFTCRIB_ACCESS_TOKEN_SECRET as string,
         (err: any, payload: any) => {
           if (err) {
             const message =
@@ -48,17 +48,17 @@ const jwthelper = {
         }
       );
     } catch (error) {
-      console.log(error)
+      console.log(error);
       throw error;
     }
   },
   signRefreshToken: (accountId: string) => {
     return new Promise((resolve, reject) => {
       const payload = {};
-      const secret = process.env.REFRESH_TOKEN_SECRET as string;
+      const secret = process.env.SWIFTCRIB_REFRESH_TOKEN_SECRET as string;
       const options = {
         expiresIn: "72h",
-        issuer: process.env.ISSUER,
+        issuer: process.env.SWIFTCRIB_ISSUER,
         audience: accountId,
       };
       JWT.sign(payload, secret, options, (err, token) => {
@@ -68,8 +68,8 @@ const jwthelper = {
         }
         resolve(token);
       });
-    }).catch((error:any)=>{
-      console.log(error)
+    }).catch((error: any) => {
+      console.log(error);
       throw error;
     });
   },
@@ -78,7 +78,7 @@ const jwthelper = {
     return new Promise((resolve: any, reject: any) => {
       JWT.verify(
         refreshToken,
-        process.env.REFRESH_TOKEN_SECRET as string,
+        process.env.SWIFTCRIB_REFRESH_TOKEN_SECRET as string,
         (err: any, payload: any) => {
           if (err) {
             const message =
@@ -88,8 +88,8 @@ const jwthelper = {
           resolve(payload);
         }
       );
-    }).catch((error:any)=>{
-      console.log(error)
+    }).catch((error: any) => {
+      console.log(error);
       throw error;
     });
   },

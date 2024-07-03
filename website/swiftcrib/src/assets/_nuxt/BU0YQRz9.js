@@ -1,0 +1,1 @@
+import{j as e,M as s,I as t,O as o,Q as r,S as n}from"./p-XyVM-N.js";const p=e({__name:"FormFieldError",props:{validationMsg:{},extraClass:{}},setup(i){return(a,l)=>a.validationMsg?(s(),t("p",{key:0,class:r(`!text-[#f03d3d] text-xs mt-2.5 ${a.extraClass}`)},o(a.validationMsg),3)):n("",!0)}});export{p as _};

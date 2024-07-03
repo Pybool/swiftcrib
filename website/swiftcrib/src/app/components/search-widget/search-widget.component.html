@@ -1,0 +1,150 @@
+<div class="w-full bg-black px-10 pt-14 md:pb-20 pb-9" data-v-7450585f>
+    <h1 class="text-white md:text-5xl text-3xl mb-6 text-center font-black" data-v-7450585f>
+       The better way to <span class="text-gradient" data-v-7450585f>Rent</span>
+    </h1>
+    <p class="text-white md:text-lg text-sm text-center w-full max-w-2xl mx-auto" data-v-7450585f>
+       Swiftcrib is a complete rental management solution for landlords and
+       tenants in Africa. List an apartment for free, rent an apartment and pay flexibly,
+       verify your tenants and collect rent automatically with our rental management tools.
+    </p>
+    <div
+    style="max-width:70vw!important"
+       class="h-[250px] md:h-[74px] mx-auto mt-10 bg-[#1F1F1F] border border-solid border-[#454545]/[0.3] rounded-xl md:rounded-full flex-1 items-center max-w-[250px] md:max-w-[895px] md:pr-4"
+       data-v-7450585f>
+       <div class="flex items-center" data-v-7450585f>
+          <form class="w-full flex flex-col md:flex-row" data-v-7450585f>
+             <div class="w-full flex-row-sb justify-between" data-v-7450585f>
+                <div data-v-7450585f><label for="search"
+                      class="text-[#7C7E8B] text-sm h-0 text-12px relative top-[5px] md:top-[12px] left-[12px] md:left-[25px]"
+                      data-v-7450585f>ANYTHING</label><input [(ngModel)]="filter.searchText" name="searchText" value="" type="text"
+                      class="bg-transparent search !px-0 border-none focus:outline-none focus:!ring-0 text-[#bbbbbb]/[0.8] !leading-none text-[10px] md:text-[12px] w-11/12 max-w-[300px] h-[40px] md:h-[55px] ml-3 md:ml-[1.6rem]"
+                      placeholder="Tell us where!" data-v-7450585f>
+                </div>
+                <!---->
+             </div>
+             <div (mouseenter)="showPriceRangeDropDown('min')" (mouseleave)="hidePriceRangeDropDown('min')" class="relative min-w-[200px] !min-w-full md:!min-w-[175px] md:mt-[15px]"
+                data-v-7450585f>
+                <form 
+                   class="!border-[#1F1F1F]  md:!border-l-[#454545]/[0.3]  !rounded-none  !pt-0 md:!mb-5 !h-[65px] md:!h-[40px] h-[74px] bg-[#1F1F1F] border border-solid border-[#454545]/[0.3] rounded-xl md-s:px-5 px-3 py-3.5">
+                   <label for="search"
+                      class="text-[#7C7E8B] text-sm block mb-2 uppercase">Pricing</label>
+                   <div class="price-range flex-row-sb justify-between items-center cursor-pointer"><span
+                         class="text-sm price-range text-[#bbbbbb]/[0.8] text-sm">{{filter?.minPrice?.toLocaleString()}}</span><svg class="!w-[15px] w-5"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#fff"
+                         aria-hidden="true">
+                         <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                      </svg></div>
+                      <ul  class="price-range-content-min dropdown-content">
+                         <ng-container *ngFor="let price of prices">
+                            <li (click)="filterSetters(price).minPrice()">
+                                <div class="dropdown-text">NGN {{price?.toLocaleString()}}</div>
+                                <hr style="margin: 0px!important;">
+                            </li>
+                         </ng-container>
+                         
+
+                     </ul>
+                </form>
+             </div>
+             <div (mouseenter)="showPriceRangeDropDown('max')" (mouseleave)="hidePriceRangeDropDown('max')" class="relative min-w-[200px] !min-w-full md:!min-w-[175px] md:mt-[15px]"
+                data-v-7450585f>
+                <form 
+                   class="!border-[#1F1F1F]  md:!border-l-[#454545]/[0.3]  !rounded-none  !pt-0 md:!mb-5 !h-[65px] md:!h-[40px] h-[74px] bg-[#1F1F1F] border border-solid border-[#454545]/[0.3] rounded-xl md-s:px-5 px-3 py-3.5">
+                   <label for="search"
+                      class="text-[#7C7E8B] text-sm block mb-2 uppercase">Pricing</label>
+                   <div class="price-range flex-row-sb justify-between items-center cursor-pointer"><span
+                         class="text-sm price-range text-[#bbbbbb]/[0.8] text-sm">{{filter?.maxPrice?.toLocaleString()}}</span><svg class="!w-[15px] w-5"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#fff"
+                         aria-hidden="true">
+                         <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                      </svg></div>
+                      <ul  class="price-range-content-max dropdown-content">
+                        <ng-container *ngFor="let price of prices">
+                            <li (click)="filterSetters(price).maxPrice()">
+                                <div class="dropdown-text">NGN {{price?.toLocaleString()}}</div>
+                                <hr style="margin: 0px!important;">
+                            </li>
+                         </ng-container>
+
+                     </ul>
+                </form>
+             </div>
+             <div (mouseenter)="showBedroomsDropDown()" (mouseleave)="hideBedroomsDropDown()" class="relative min-w-[200px] !min-w-full md:!min-w-[175px] md:mt-[15px]"
+                data-v-7450585f>
+                <form 
+                   class="!border-[#1F1F1F]  md:!border-l-[#454545]/[0.3]  !rounded-none  !pt-0 md:!mb-5 !h-[65px] md:!h-[40px] h-[74px] bg-[#1F1F1F] border border-solid border-[#454545]/[0.3] rounded-xl md-s:px-5 px-3 py-3.5">
+                   <label for="search"
+                      class="text-[#7C7E8B] text-sm block mb-2 uppercase">Bedrooms</label>
+                   <div class="price-range flex-row-sb justify-between items-center cursor-pointer"><span
+                         class="text-sm price-range text-[#bbbbbb]/[0.8] text-sm">{{filter?.bedrooms}}</span><svg class="!w-[15px] w-5"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#fff"
+                         aria-hidden="true">
+                         <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                      </svg></div>
+                      <ul  class="bedroom-dropdown-content dropdown-content">
+                        <ng-container *ngFor="let bedroom of bedrooms">
+                            <li (click)="filterSetters(bedroom).bedrooms()">
+                                <div class="dropdown-text">{{bedroom}}</div>
+                                <hr style="margin: 0px!important;">
+                            </li>
+                         </ng-container>
+
+                     </ul>
+                </form>
+             </div>
+             <div (mouseenter)="showBathroomsDropDown()" (mouseleave)="hideBathroomsDropDown()" class="relative min-w-[200px] !min-w-full md:!min-w-[175px] md:mt-[15px]"
+                data-v-7450585f>
+                <form 
+                   class="!border-[#1F1F1F]  md:!border-l-[#454545]/[0.3]  !rounded-none  !pt-0 md:!mb-5 !h-[65px] md:!h-[40px] h-[74px] bg-[#1F1F1F] border border-solid border-[#454545]/[0.3] rounded-xl md-s:px-5 px-3 py-3.5">
+                   <label for="search"
+                      class="text-[#7C7E8B] text-sm block mb-2 uppercase">Bathrooms</label>
+                   <div class="price-range flex-row-sb justify-between items-center cursor-pointer"><span
+                         class="text-sm price-range text-[#bbbbbb]/[0.8] text-sm">{{filter?.bathrooms}}</span><svg class="!w-[15px] w-5"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#fff"
+                         aria-hidden="true">
+                         <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                      </svg></div>
+                      <ul  class="bathroom-dropdown-content dropdown-content">
+                        <ng-container *ngFor="let bathroom of bathrooms">
+                            <li (click)="filterSetters(bathroom).bathrooms()">
+                                <div class="dropdown-text">{{bathroom}}</div>
+                                <hr style="margin: 0px!important;">
+                            </li>
+                         </ng-container>
+
+                     </ul>
+                </form>
+             </div>
+             <div class="flex justify-center w-full md:hidden" data-v-7450585f>
+                <button [disabled]="searchDisabled()" (click)="searchForApartments()" style="justify-content: center;"
+                   class="apply-filter whitespace-nowrap rounded-full font-bold text-sm px-2.5 py-3.5 flex justify-center items-center h-12 select-none disabled:opacity-75 disabled:cursor-not-allowed min-w-[164px] bg-primary-orange py-2.5 px-2.5 ml-3 font-bold text-[#fff]"
+                   type="submit">
+                   <span class="">Find a home</span>
+                </button>
+                
+             </div>
+             <div class="md:flex items-center justify-center hidden" data-v-7450585f>
+                <button style="justify-content: center;"
+                   class="apply-filter whitespace-nowrap rounded-full font-bold text-sm px-2.5 py-3.5 flex justify-center items-center h-12 select-none disabled:opacity-75 disabled:cursor-not-allowed min-w-[164px] bg-primary-orange py-2.5 px-2.5 ml-3 font-bold text-[#fff]"
+                   type="submit">
+                   <span style="font-size: 16px;" class="">Find a home</span>
+                </button>
+             </div>
+          </form>
+       </div>
+    </div>
+    <div *ngIf="priceWarn" class="price-warn reset-filter">Tip: For a more refined search though not compulsory, select both min and max prices</div>
+    <div class="reset-filter"><span (click)="resetFilter()" class="reset-filter-text">Reset filter</span></div>
+    
+    <a href="https://dashboard.spleet.africa/create-account"
+       class="md-s:hidden text-white font-semibold bg-primary-orange py-2 text-center text-sm rounded-[20px] block hover:text-white w-36 mx-auto mt-6"
+       data-v-7450585f> Create Account </a>
+ </div>

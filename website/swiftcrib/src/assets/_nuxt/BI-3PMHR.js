@@ -1,0 +1,1 @@
+import{ay as s,f as i,az as e,b as n}from"./C5das2kd.js";import"./p-XyVM-N.js";const c=s(t=>{const a=i(),o=n().public.DASHBOARD_DOMAIN;if(a.isAuthenticated)e(t.fullPath);else return e(`${o}/login`,{external:!0})});export{c as default};

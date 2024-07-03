@@ -1,0 +1,312 @@
+<app-swiftcrib-header></app-swiftcrib-header>
+<div class="container">
+    <div class="container-fluid">
+        <div class="justify-content-center">
+            <div class="col-sm-10 col-xl-5 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <div style="gap:10%; align-items: center;" class="flex">
+                        <img style="border-radius: 20px;" class="logo"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdKzQX7JGDyCC30u1Rt6Ib-o5n3WPRKPcoI5XVkI-3fw&s" />
+                        <h2 id="heading">Swiftcrib Agent Enrollment Form</h2>
+                    </div>
+
+                    <!-- <p>Fill all form field to go to next step</p> -->
+                    <form enctype="multipart/form-data" id="msform">
+                        <!-- progressbar -->
+                        <ul id="progressbar">
+                            <li class="active" id="account"><strong>Account</strong></li>
+                            <li id="personal"><strong>Personal</strong></li>
+                            <li style="white-space: nowrap;" id="payment"><strong>Qualifications & Documents</strong>
+                            </li>
+                            <li id="banking"><strong>Banking Details</strong>
+                            </li>
+                            <li id="guarantors"><strong>Guarantors</strong>
+                            </li>
+                            <li id="confirm"><strong>Finish</strong></li>
+                        </ul>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <br> <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Account Information:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 1 - 6</h2>
+                                    </div>
+                                </div>
+                                <label class="fieldlabels">Email: <small>*</small></label> <input
+                                    [(ngModel)]="accountInformation.email" type="email" name="email"
+                                    placeholder="Email Id" /> <label class="fieldlabels">Username:
+                                    <small>*</small></label> <input [(ngModel)]="accountInformation.userName"
+                                    type="text" name="userName" placeholder="UserName" />
+                                <label class="fieldlabels">Password: <small>*</small></label>
+                                <input [(ngModel)]="accountInformation.password" type="password" name="password"
+                                    placeholder="Password" /> <label class="fieldlabels">Confirm Password:
+                                    <small>*</small></label>
+                                <input [(ngModel)]="passwordAgain" type="password" name="cpwd"
+                                    placeholder="Confirm Password" />
+                            </div>
+                            <input
+                                [ngStyle]="{ opacity: validators.accountInfo() ? 1 : 0.5, 'pointer-events': validators.accountInfo() === false ? 'none' : 'auto' }"
+                                [disabled]="!validators.accountInfo()" (click)="submitAccountInfo()" type="button"
+                                name="next" id="ppp" class="next action-button" value="Next" />
+
+
+                            <!-- <input [ngStyle]="{ opacity: opacity, 'pointer-events': pointerType }" [disabled]="!validators.accountInfo()" (click)="submitAccountInfo()" type="button" name="next" class="next action-button" value="Next" /> -->
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Personal Information:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 2 - 6</h2>
+                                    </div>
+                                </div>
+                                <div style="max-height: 40vh; overflow-y:auto;">
+                                    <label class="fieldlabels">First Name: <small>*</small></label>
+                                    <input [(ngModel)]="personalInformation.firstName" type="text" name="firstName"
+                                        placeholder="First Name" />
+                                    <label class="fieldlabels">Last Name: <small>*</small></label>
+                                    <input type="text" [(ngModel)]="personalInformation.lastName" name="lastName"
+                                        placeholder="Last Name" />
+                                    <label class="fieldlabels">Contact No.: <small>*</small></label>
+                                    <input [(ngModel)]="personalInformation.phone" type="text" name="phone"
+                                        placeholder="Contact No." />
+                                    <label class="fieldlabels">Alternate Contact No:</label>
+                                    <input [(ngModel)]="personalInformation.altPhone" type="text" name="altPhone"
+                                        placeholder="Alternate Contact No." />
+
+                                    <label class="fieldlabels">State of Residence: <small>*</small></label>
+                                    <select [(ngModel)]="personalInformation.stateOfResidence" type="text"
+                                        name="stateOfResidence">
+                                        <ng-container *ngFor="let state of states">
+                                            <option>{{state}}</option>
+                                        </ng-container>
+                                    </select>
+                                    <label class="fieldlabels">City: <small>*</small></label>
+                                    <input [(ngModel)]="personalInformation.city" type="text" name="city"
+                                        placeholder="City" />
+                                    <label class="fieldlabels">Street: <small>*</small></label>
+                                    <input [(ngModel)]="personalInformation.street" type="text" name="street"
+                                        placeholder="Street" />
+
+                                    <label class="fieldlabels">State of Origin: <small>*</small></label>
+                                    <select [(ngModel)]="personalInformation.stateOfOrigin"
+                                        (change)="getStateLgas($event)" type="text" name="stateOfOrigin">
+                                        <ng-container *ngFor="let state of states">
+                                            <option>{{state}}</option>
+                                        </ng-container>
+                                    </select>
+
+                                    <label class="fieldlabels">LGA of Origin: <small>*</small></label>
+                                    <select [(ngModel)]="personalInformation.lga"
+                                        [disabled]="selectedStateLgas?.length == 0" type="text" name="lga">
+                                        <ng-container *ngFor="let lga of selectedStateLgas">
+                                            <option>{{lga?.name}}</option>
+                                        </ng-container>
+                                    </select>
+
+                                    <label class="fieldlabels">Country: <small>*</small></label>
+                                    <input [(ngModel)]="personalInformation.country" type="text" name="country"
+                                        placeholder="Country" />
+                                </div>
+
+
+                            </div>
+                            <input [ngStyle]="{ opacity: validators.personalInfo() ? 1 : 0.5, 'pointer-events': validators.personalInfo() === false ? 'none' : 'auto' }"
+                            [disabled]="!validators.personalInfo()" (click)="submitPersonalInfo()" type="button" name="next" class="next action-button"
+                                value="Next" />
+                            <input type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Qualifications & Documents:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 3 - 6</h2>
+                                    </div>
+                                </div>
+                                <div style="max-height: 40vh; overflow-y:auto;">
+                                    <label class="fieldlabels">Highest Qualification: <small>*</small></label>
+                                    <select [(ngModel)]="qualifications.highestQualification"
+                                        name="highestQualification">
+                                        <option>WASSCE</option>
+                                        <option>BACHELOR HONORS</option>
+                                        <option>MASTERS HONORS</option>
+                                        <option>PHD HONORS</option>
+                                    </select>
+                                    <label class="fieldlabels">Upload Your Certificate:<small>*</small></label>
+                                    <input id="certificate" [(ngModel)]="qualifications.certificate" type="file"
+                                        name="certificate" (change)="chooseCertificate()" accept="image/*">
+                                    <label class="fieldlabels">Upload Your National ID:<small>*</small></label>
+                                    <input id="nationalId" (change)="chooseNationalId()" [(ngModel)]="qualifications.nationalId" type="file"
+                                        name="nationalId" accept="image/*">
+                                    <label class="fieldlabels">Upload Your Resume:<small>*</small></label>
+                                    <input id="resume" (change)="chooseResume()" [(ngModel)]="qualifications.resume" type="file" name="resume"
+                                        accept=".doc,.docx,.pdf">
+                                </div>
+
+                            </div>
+                            <input [ngStyle]="{ opacity: validators.attachments() ? 1 : 0.5, 'pointer-events': validators.attachments() === false ? 'none' : 'auto' }"
+                            [disabled]="!validators.attachments()" (click)="submitQualifications()" type="button" name="next" class="next action-button"
+                                value="Submit" />
+                            <input  type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Banking Information:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 4 - 6</h2>
+                                    </div>
+                                </div>
+                                <div style="max-height: 40vh; overflow-y:auto;">
+                                    <label class="fieldlabels">BVN: <small>*</small></label>
+                                    <input [(ngModel)]="bankDetails.bvn" type="text" name="bvn" placeholder="BVN" />
+                                    <label class="fieldlabels">Preffered Bank: <small>*</small></label>
+                                    <input [(ngModel)]="bankDetails.preferredBank" type="text" name="preferredBank"
+                                        placeholder="Preffered Bank" />
+                                    <label class="fieldlabels">Account No.: <small>*</small></label>
+                                    <input [(ngModel)]="bankDetails.accountNo" type="text" name="accountNo"
+                                        placeholder="Account No." />
+                                    <label class="fieldlabels">Account Name.: <small>*</small></label>
+                                    <input [(ngModel)]="bankDetails.accountName" type="text" name="accountName"
+                                        placeholder="Account Name." />
+                                </div>
+
+
+                            </div>
+                            <input [ngStyle]="{ opacity: validators.bankInfo() ? 1 : 0.5, 'pointer-events': validators.bankInfo() === false ? 'none' : 'auto' }"
+                            [disabled]="!validators.bankInfo()" (click)="submitBankingDetails()" type="button" name="next" class="next action-button"
+                                value="Next" />
+                            <input type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Guarantors:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 5 - 6</h2>
+                                    </div>
+                                </div>
+                                <div style="max-height: 40vh; overflow-y:auto;">
+                                    <h4 class="guarantor">Guarantor 1</h4>
+                                    <label class="fieldlabels">Guarantor1 First Name: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.firstName" type="text" name="gfirstName"
+                                        placeholder="Guarantor1 First Name" />
+                                    <label class="fieldlabels">Guarantor1 Last Name: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.lastName" type="text" name="glastName"
+                                        placeholder="Guarantor1 Last Name" />
+                                    <label class="fieldlabels">Guarantor1 Contact No.: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.phone" type="text" name="gphone"
+                                        placeholder="Guarantor1 Contact No." />
+                                    <label class="fieldlabels">Guarantor1 Alternate Contact No.:
+                                        <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.altPhone" type="text" name="galtPhone"
+                                        placeholder="Guarantor1 Alternate Contact No." />
+                                    <label class="fieldlabels">Guarantor1 Home Address.: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.address" type="text" name="address"
+                                        placeholder="Guarantor1 Home Address." />
+                                    <label class="fieldlabels">Guarantor1 Workplace: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.workPlace" type="text" name="workPlace"
+                                        placeholder="Guarantor1 Workplace" />
+                                    <label class="fieldlabels">Guarantor1 Job Description: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.jobDescription" type="text"
+                                        name="jobDescription" placeholder="Guarantor1 Job Description" />
+                                    <label class="fieldlabels">Guarantor1 BVN: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor1Information.bvn" type="text" name="gbvn"
+                                        placeholder="Guarantor1 BVN" />
+                                    <label class="fieldlabels">Guarantor1 National ID:</label>
+                                    <input id="g1nationalId" (change)="chooseGuarantorNationalId($event)" type="file" name="g1nationalId"
+                                        accept="image/*">
+                                    <br>
+                                    <hr style="height:2px">
+                                    <br>
+                                    <h4 class="guarantor">Guarantor 2</h4>
+                                    <label class="fieldlabels">Guarantor2 First Name: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.firstName" type="text" name="g2firstName"
+                                        placeholder="Guarantor2 First Name" />
+                                    <label class="fieldlabels">Guarantor2 Last Name: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.lastName" type="text" name="g2lastName"
+                                        placeholder="Guarantor2 Last Name" />
+                                    <label class="fieldlabels">Guarantor2 Contact No.: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.phone" type="text" name="g2phone"
+                                        placeholder="Guarantor2 Contact No." />
+                                    <label class="fieldlabels">Guarantor2 Alternate Contact No.:
+                                        <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.altPhone" type="text" name="g2altPhone"
+                                        placeholder="Guarantor2 Alternate Contact No." />
+                                    <label class="fieldlabels">Guarantor2 Home Address.: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.address" type="text" name="g2address"
+                                        placeholder="Guarantor2 Home Address." />
+                                    <label class="fieldlabels">Guarantor2 Workplace: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.workPlace" type="text" name="g2workPlace"
+                                        placeholder="Guarantor2 Workplace" />
+                                    <label class="fieldlabels">Guarantor2 Job Description: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.jobDescription" type="text"
+                                        name="g2jobDescription" placeholder="Guarantor2 Job Description" />
+                                    <label class="fieldlabels">Guarantor2 BVN: <small>*</small></label>
+                                    <input [(ngModel)]="guarantor2Information.bvn" type="text" name="g2bvn"
+                                        placeholder="Guarantor2 BVN" />
+                                    <label class="fieldlabels">Guarantor2 National ID:</label>
+                                    <input id="g2nationalId" (change)="chooseGuarantorNationalId($event)" type="file"
+                                        name="g2nationalId" accept="image/*">
+                                </div>
+
+
+                            </div>
+                            <input [ngStyle]="{ opacity: validators.guarantorInfo(guarantor1Information) && validators.guarantorInfo(guarantor2Information) ? 1 : 0.5, 'pointer-events': validators.guarantorInfo(guarantor1Information) && validators.guarantorInfo(guarantor2Information) === false ? 'none' : 'auto' }"
+                            [disabled]="!validators.guarantorInfo(guarantor1Information) && validators.guarantorInfo(guarantor2Information)" (click)="submitGuarantorsInfo()" type="button" name="next" class="next action-button"
+                                value="Next" />
+                            <input type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Finish:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 6 - 6</h2>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2>
+                                <br>
+                                <div class="row justify-content-center">
+                                    <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image">
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="row justify-content-center">
+                                    <div class="col-7 text-center">
+                                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-swiftcrib-footer></app-swiftcrib-footer>

@@ -1,39 +1,46 @@
+import { getCountryNameByCode } from "./countries";
+import geoip from "geoip-lite";
+import { getCountryCurrencyByCountryCode } from "./currenciesCountryCodes";
 
-const utils = {
-    generateOtp: (()=>{
-        const otp:number = Math.floor(1000 + Math.random() * 9000)
-        return otp.toString();
-    }),
+export const generateOtp = () => {
+  const otp: number = Math.floor(1000 + Math.random() * 9000);
+  return otp.toString();
+};
 
-    telcoSimulate: ((ms:number,phone:string)=>{
-        return new Promise((resolve, reject) => {
-            console.log("Task started...");
-            setTimeout(() => {
-              console.log("Task completed!");
-              resolve({status:true, phone: phone}); 
-            }, ms);
-          });
-          
-    }),
+export const delay = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
 
-    formatDateToCustomString:(date:Date) =>{
-      const year = date.getFullYear();
-      const month = ('0' + (date.getMonth() + 1)).slice(-2);
-      const day = ('0' + date.getDate()).slice(-2);
-      const hours = ('0' + date.getHours()).slice(-2);
-      const minutes = ('0' + date.getMinutes()).slice(-2);
-      const period = date.getHours() < 12 ? 'am' : 'pm';
-    
-      return `${year}-${month}-${day} ${hours}:${minutes}${period}`;
-    },
+export const slugify = (text: string) => {
+  return text
+    .toString() 
+    .toLowerCase() 
+    .trim()
+    .replace(/[\s\W-]+/g, "-") 
+    .replace(/^-+|-+$/g, "");
+};
 
-    wss: null,
+export const getUserCountry = (req: any) => {
+  try {
+    let geoData = geoip.lookup(req.ip) as any;
+    const countryCode = geoData.country;
+    geoData.country = getCountryNameByCode(countryCode);
+    geoData.currency = getCountryCurrencyByCountryCode(countryCode);
+    geoData.countryCode = countryCode;
 
-    delay(ms:number){
-      return new Promise(resolve=> setTimeout(resolve,ms))
-    },
+    if (geoData) {
+      return {
+        geoData,
+        connectionRemoteAddress: req.connection.remoteAddress,
+        reqIp: req.ip,
+        socketRemoteAddress: req.socket.remoteAddress,
+        forwardedIp: req.headers["x-forwarded-for"],
+      };
+    }
 
-    userConnections: new Map()
-}
-
-export default utils;
+    return null;
+  } catch (error) {
+    console.error("Error fetching geolocation data:", error);
+    return null;
+  }
+};

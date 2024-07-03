@@ -1,0 +1,13 @@
+.text-gradient{
+    background: linear-gradient(180deg, white 7.29%, orange 82.81%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent
+  }
+.hide-scroll[data-v-92272da5] {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll[data-v-92272da5]::-webkit-scrollbar {
+  display: none;
+}

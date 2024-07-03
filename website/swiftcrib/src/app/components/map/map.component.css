@@ -1,0 +1,11 @@
+@media (max-width: 991px) {
+    .map-container {
+      width: none!important;
+    }
+  
+  }
+
+.map{
+    height:250px;
+    width:600px;
+}

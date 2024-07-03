@@ -6,6 +6,8 @@ interface Xrequest extends Request {
   account?:any;
   payload?:any;
   body:any;
+  files?:File[] | any;
+  attachments?:any
 }
 
 export default Xrequest;

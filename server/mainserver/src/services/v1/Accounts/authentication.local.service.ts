@@ -33,6 +33,7 @@ export class Authentication {
       if (user) {
         throw createError.Conflict(message.auth.alreadyExistPartText);
       }
+      result.createdAt = new Date();
       const pendingAccount = new Accounts(result);
       const savedUser: any = await pendingAccount.save();
 
@@ -67,7 +68,7 @@ export class Authentication {
       if (!isMatch)
         return createError.Unauthorized(message.auth.invalidCredentials);
 
-      if (!account.email_confirmed) {
+      if (!account.emailConfirmed) {
         const otp: string = generateOtp();
         await setExpirableCode(result.email, "account-verification", otp);
         await mailActions.auth.sendEmailConfirmationOtp(result.email, otp);
@@ -104,7 +105,7 @@ export class Authentication {
         );
       }
 
-      if (user.email_confirmed) {
+      if (user.emailConfirmed) {
         return { status: false, message: message.auth.emailAlreadyVerified };
       }
       const otp: string = generateOtp();
@@ -182,8 +183,8 @@ export class Authentication {
 
     try {
       const account: any = await Accounts.findOne({ email });
-      if (!account.email_confirmed) {
-        account.email_confirmed = true;
+      if (!account.emailConfirmed) {
+        account.emailConfirmed = true;
         await account.save();
 
         return { status: true, message: message.auth.emailVerifiedOk };

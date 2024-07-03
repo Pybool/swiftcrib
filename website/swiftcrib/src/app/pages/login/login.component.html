@@ -1,0 +1,105 @@
+<app-swiftcrib-header></app-swiftcrib-header>
+<section *ngIf="!showtermsAndConditions" style="margin-bottom: 60px" class="container mx-auto">
+    <article class="half">
+        <div style="flex-direction: column-reverse; align-items: start;" class="flex-row">
+            <h1>Create Account</h1>
+            <a href="/convert-fiat" class="flex-row go-home"><svg width="20px" height="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path
+                        d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                </svg> Go to Home</a>
+        </div>
+        <div class="tabs">
+            <span (click)="setActiveTab('signin')" [class.active]="activeTab === 'signin'" class="tab signin active"><a
+                    href="javascript:void(0)">Sign in</a></span>
+            <span class="tab signup" (click)="setActiveTab('signup')" [class.active]="activeTab === 'signup'"><a
+                    href="javascript:void(0)">Sign up</a></span>
+        </div>
+        <div class="content">
+            <div *ngIf="activeTab === 'signin'" class="signin-cont cont">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <input autocomplete="off" #loginMail [(ngModel)]="loginCredentials.email"
+                        (keyup)="dirtyEmail(loginCredentials)" (change)="enableLoginButton()" type="email" name="email"
+                        id="email" class="inpt" required="required" placeholder="Your email" />
+                    <small class="error" *ngIf="isInvalidEmail(loginCredentials) && isDirtyEmail">Please enter a valid
+                        email</small>
+                    <label for="email">Your email</label>
+                    <input autocomplete="off" #loginPass [(ngModel)]="loginCredentials.password" type="password"
+                        name="password" id="password" class="inpt" required="required" placeholder="Your password" />
+
+                    <label for="password">Your password</label>
+                    <label style="width: 100% !important;margin-bottom: 30px;" for="accepted" class="flex-row">
+
+                        <span *ngIf="!isPasswordMatch()">Remember Me</span>&nbsp;
+                    </label>
+                    <div class="submit-wrap">
+                        <div class="flex-row">
+
+                            <button
+                                [disabled]="loginCredentials.email.trim()=='' || loginCredentials.password.trim()==''"
+                                type="submit" (click)="login()" value="Sign in" class="submit-btn btn flex-row">
+                                <div *ngIf="showLoginSpinner" style="margin-top: 0px" class="spinner-container">
+                                    <div class="spinner"></div>
+
+                                </div>
+                                <span>Sign In</span>
+                            </button>
+
+
+                        </div>
+                        <a href="#" class="more">Forgot your password?</a>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="activeTab === 'signup'" class="signup-cont cont">
+                <div>
+                    <input #signUpMail autocomplete="off" [(ngModel)]="credentials.email"
+                        (keyup)="dirtyEmail(credentials)" type="email" name="email" id="email" class="inpt"
+                        required="required" placeholder="Your email" />
+                    <small class="error" *ngIf="isInvalidEmail(credentials) && isDirtyEmail">Please enter a valid
+                        email</small>
+                    <input #signUpPass autocomplete="off" (keyup)="dirtyPassword()" [(ngModel)]="credentials.password"
+                        type="password" name="password" id="password" class="inpt" required="required"
+                        placeholder="Your password" />
+                    <small class="alert-danger error" *ngIf="requirederrors('password') && isDirtyPassword">
+                        <small class="error" *ngIf="requirederrors('password') && isDirtyPassword">A valid password is
+                            required</small>
+                    </small>
+                    <small class="alert-danger error" *ngIf="isInvalidPassword() && isDirtyPassword">
+                        <small class="error">Password must have at least: 8 characters,2 uppercase letters, 3 lowercase
+                            letters, 1 special characters & 2 numbers</small>
+                    </small>
+                    <input [(ngModel)]="passwordAgain" (keyup)="dirtyPassword()" type="password" name="password-again"
+                        id="password-again" class="inpt" required="required" placeholder="Your password again" />
+
+                    <input *ngIf="!isPasswordMatch()" id="accepted" name="accepted" (change)="toggleAccepted()"
+                        type="checkbox" class="checkbox" />
+                    <small class="alert-danger error" *ngIf="isPasswordMatch() && isDirtyPassword">
+                        <small class="error" *ngIf="isPasswordMatch() && isDirtyPassword">Passwords must match</small>
+                    </small>
+                    <label style="width: 100% !important;margin-bottom: 30px;" for="accepted" class="flex-row">
+
+                        <span *ngIf="!isPasswordMatch()">I accept all terms and conditions</span>&nbsp;
+                    </label>
+                    <br />
+                    <div class="submit-wrap">
+                        <div class="flex-row">
+                            <!-- [ngStyle]="{ opacity: opacity, cursor: pointerType }" for the input below -->
+                            <button [ngStyle]="{ opacity: opacity, 'pointer-events': pointerType }" type="submit"
+                                (click)="register()" value="Sign up" class="submit-btn btn flex-row">
+                                <div *ngIf="showRegSpinner" style="margin-top: 0px" class="spinner-container">
+                                    <div class="spinner"></div>
+                                </div>
+                                <span>Sign In</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div style="margin-top: 20vh" class="half bg"></div>
+</section>
+<!-- <app-termsandconditions *ngIf="showtermsAndConditions"></app-termsandconditions> -->
+<app-swiftcrib-footer></app-swiftcrib-footer>

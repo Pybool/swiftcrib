@@ -1,5 +1,5 @@
 import express from "express";
-import { decode, ensureAdmin } from "../../middlewares/jwt";
+import { decode, decodeExt, ensureAdmin } from "../../middlewares/jwt";
 import listingController from "../../controllers/v1/Listing/listing.controller";
 import { getMulterConfig } from "../../middlewares/listing.middleware";
 import listingSearchController from "../../controllers/v1/Listing/listing.search.controller";
@@ -73,6 +73,10 @@ listingRouter.get(
 );
 
 
-
+listingRouter.post(
+  "/make-property-enquiry",
+  decodeExt,
+  listingController.makePropertyEnquiry
+);
 
 export default listingRouter;

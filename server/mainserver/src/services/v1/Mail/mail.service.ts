@@ -3,10 +3,9 @@ import sendMail from "./mailtrigger.service";
 
 const mailActions = {
   auth: {
-    sendEmailConfirmationOtp: async (email:string, otp:string) => {
+    sendEmailConfirmationOtp: async (email: string, otp: string) => {
       return new Promise(async (resolve, reject) => {
         try {
-          
           const template = await ejs.renderFile(
             "src/templates/emailConfirmation.ejs",
             { email, otp }
@@ -21,20 +20,50 @@ const mailActions = {
           };
           await sendMail(mailOptions);
           resolve({ status: true });
-        } catch(error){
-          console.log(error)
+        } catch (error) {
+          console.log(error);
           resolve({ status: false });
         }
-      }).catch((error:any)=>{
-        console.log(error)
-        throw error
+      }).catch((error: any) => {
+        console.log(error);
+        throw error;
       });
     },
 
     sendPasswordResetMail: async (email: string, user: any) => {
       return { status: true, message: "" };
     },
-  }
+  },
+
+  listing: {
+    contactUs: async (email: string, data: any) => {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const logo = ""
+          const template = await ejs.renderFile(
+            "src/templates/propertyEnquiry.ejs",
+            { email, data, logo }
+          );
+
+          const mailOptions = {
+            from: process.env.SWIFTCRIB_EMAIL_CONTACT_US,
+            to: email,
+            subject: "Thank you for reaching out!",
+            text: `We thank you for indicating interest in our properties, we would respond as soon as possible`,
+            html: template,
+          };
+          await sendMail(mailOptions);
+          resolve({ status: true });
+        } catch (error) {
+          console.log(error);
+          resolve({ status: false });
+        }
+      }).catch((error: any) => {
+        console.log(error);
+        throw error;
+      });
+    },
+  },
 };
 
 export default mailActions;

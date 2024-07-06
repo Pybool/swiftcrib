@@ -65,8 +65,8 @@ export class PropertiesComponent {
   public redirect: boolean = false;
   public filters: Ifilters = {};
   public defaultLocation = 'ibadan';
-  public routes$:any;
-  public routesQp$:any;
+  public routes$: any;
+  public routesQp$: any;
 
   constructor(
     public listingService: ListingService,
@@ -85,11 +85,6 @@ export class PropertiesComponent {
         this.filters.serviceType = this.serviceType;
       }
     });
-
-    // this.routesQp$ = this.route.queryParams.subscribe((params: Ifilters) => {
-    //   this.filters = this.cleanParams(params);
-    //   console.log('Cleaned Filter params ', this.filters);
-    // });
 
     this.fetchListings();
     this.setupScrollEventListener();
@@ -249,7 +244,6 @@ export class PropertiesComponent {
   cleanParams(params: any) {
     let val: any = '';
     let newparams = JSON.parse(JSON.stringify(params));
-    
 
     try {
       val = newparams['searchText'] || '';
@@ -260,12 +254,12 @@ export class PropertiesComponent {
 
     try {
       val = newparams['minPrice'];
-      console.log("Minval ", val, isNaN(val))
+      console.log('Minval ', val, isNaN(val));
       if (isNaN(val)) {
         val = '';
       }
       newparams.minPrice = val;
-      console.log("Minval ", val, isNaN(val))
+      console.log('Minval ', val, isNaN(val));
     } catch {
       newparams.minPrice = '';
     }
@@ -276,7 +270,6 @@ export class PropertiesComponent {
         val = '';
       }
       newparams.maxPrice = val;
-      
     } catch {
       newparams.maxPrice = '';
     }
@@ -301,16 +294,25 @@ export class PropertiesComponent {
       newparams.baths = '';
     }
 
-    console.log("New Paramsxx ", newparams)
+    console.log('New Paramsxx ', newparams);
 
     return newparams;
+  }
+
+  getProperty($event: any, slug: string) {
+    const classList = Array.from($event.target.classList);
+    if (
+      classList.includes('no-prop') == false
+    ) {
+      this.router.navigateByUrl(`/property/${slug}`);
+    }
   }
 
   ngOnDestroy() {
     if (this.scrollSubscription) {
       this.scrollSubscription.unsubscribe();
     }
-    this.routesQp$?.unsubscribe()
-    this.routes$?.unsubscribe()
+    this.routesQp$?.unsubscribe();
+    this.routes$?.unsubscribe();
   }
 }

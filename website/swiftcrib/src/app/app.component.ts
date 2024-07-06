@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
+import { ShareModalComponent } from './components/share-modal/share-modal.component';
 
 @Component({
   selector: 'app-root',

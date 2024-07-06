@@ -7,13 +7,14 @@ let sendMail:any;
 
 try {
   transporter = nodemailer.createTransport({
-    service: process.env.EMAIL_HOST,
-    host: process.env.EMAIL_HOST,
+    service: process.env.SWIFTCRIB_EMAIL_HOST,
+    host: process.env.SWIFTCRIB_EMAIL_HOST,
     port: parseInt(process.env.EMAIL_PORT || "2525"),
     auth: {
-      user: process.env.EMAIL_HOST_USER,
-      pass: process.env.EMAIL_HOST_PASSWORD,
+      user: process.env.SWIFTCRIB_EMAIL_HOST_USER,
+      pass: process.env.SWIFTCRIB_EMAIL_HOST_PASSWORD,
     },
+    tls : { rejectUnauthorized: false }
   });
 
   sendMail = (mailOptions: Options) => {

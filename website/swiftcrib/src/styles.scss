@@ -39,7 +39,7 @@ footer {
 
 ::-webkit-scrollbar {
   height: 5px;
-  width: 8px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -48,12 +48,12 @@ footer {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #b0aeae;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #e2e0e0;
 }
 
 .pointer {
@@ -119,7 +119,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Rajdhani", sans-serif;
+  // font-family: "Rajdhani", sans-serif;
   color: #0a174c;
   margin-top: 0px;
   font-style: normal;
@@ -239,7 +239,7 @@ label {
   touch-action: manipulation;
   transition: all 0.3s ease 0s;
   vertical-align: middle;
-  font-family: "Rajdhani", sans-serif;
+  // font-family: "Rajdhani", sans-serif;
   position: relative;
   white-space: nowrap;
   overflow: hidden;
@@ -6015,6 +6015,10 @@ li > h3 {
   font-family: Rajdhani, sans-serif !important;
 }
 
+// * {
+//   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif !important;
+// }
+
 /* .btn {
   background: #171433 !important;
 } */
@@ -6191,24 +6195,74 @@ body {
   }
 }
 
-.container{
-  max-width: 100vw!important;
+.container {
+  max-width: 100vw !important;
 }
 
-
-.center-content{
+.center-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.no-results-text{
+.no-results-text {
   font-size: 25px;
   font-weight: 700;
 }
 
+.properties-list.list-container {
+  justify-content: center !important;
+}
 
-.properties-list.list-container{
-  justify-content: center!important;
+.sup {
+  float: right;
+  font-size: 14px;
+  color: orange;
+  top: auto;
+  display: none;
+}
+
+.more-media {
+  background: white;
+  border-radius: 50%;
+  font-weight: 700;
+  padding: 5px;
+  display: none;
+}
+
+.swiftcrib-managed {
+  font-weight: 600 !important;
+}
+
+.skeleton-box {
+  // background-color: #d6d4d6;
+}
+.skeleton-box::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  -webkit-animation: shimmer 2s infinite;
+  animation: shimmer 2s infinite;
+  content: "";
+}
+@-webkit-keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }

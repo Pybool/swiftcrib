@@ -60,3 +60,13 @@ export interface IListingFilters {
   limit?:string | number;
   loc?: string;
 }
+
+export interface IListingEnquiry{
+  account?: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  message: string;
+  url:string;
+  createdAt?: Date;
+}

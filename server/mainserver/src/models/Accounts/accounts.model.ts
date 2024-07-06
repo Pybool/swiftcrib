@@ -34,6 +34,11 @@ const AccountSchema = new Schema({
     required: false,
     default: "",
   },
+  otherName: {
+    type: String,
+    required: false,
+    default: "",
+  },
   phone: {
     type: String,
     required: false,
@@ -81,6 +86,16 @@ const AccountSchema = new Schema({
   lastLogin: {
     type: Date,
     default: null,
+    required: false,
+  },
+  isAgent:{
+    type: Boolean,
+    default: false,
+    required: false,
+  },
+  isDefaultAgent:{
+    type: Boolean,
+    default: false,
     required: false,
   },
   role: {

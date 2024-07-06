@@ -14,6 +14,7 @@ import listingValidations from "../../../validators/listings/createListing.valid
 import ListingSpace from "../../../models/Listings/listing.spaces.models";
 import SpaceAmenities from "../../../models/Listings/space.amenities";
 import ListingBookmarks from "../../../models/Listings/listing.bookmarks.model";
+import Accounts from "../../../models/Accounts/accounts.model";
 
 export class ListingService {
   static buildmedia(media: any) {
@@ -341,9 +342,9 @@ export class ListingService {
   }
 
   static async fetchListingDetails(req: Xrequest) {
-    const listingId = req.query.listingId as string;
-    const getListing = async () => {
-      return await Listing.findOne({ _id: listingId });
+    const slug = req.query.slug as string;
+    const getListing: any = async () => {
+      return await Listing.findOne({ slug: slug });
     };
     const listing = await getListing();
     if (!listing) {
@@ -354,17 +355,49 @@ export class ListingService {
       };
     }
     const getListingAmenities = async () => {
-      return await ListingAmenities.findOne({ listing: listingId })!;
+      return await ListingAmenities.findOne({ listing: listing._id })!;
     };
 
     const listingAmenities: any = await getListingAmenities()!;
     listing.amenities = listingAmenities;
 
     const getListingSpaces = async () => {
-      return await ListingSpace.find({ listing: listingId });
+      return await ListingSpace.find({ listing: listing._id });
+    };
+
+    const getListingRules = async () => {
+      return await ListingRules.findOne({ listing: listing._id });
+    };
+
+    const getAgents = async (locality: string, lga: string) => {
+      const filter: any = {
+        $and: [
+          {
+            $or: [
+              { lga: { $regex: new RegExp(lga, "i") } }, // Case-insensitive search for lga
+              { street: { $regex: new RegExp(locality, "i") } }, // Case-insensitive search for street
+            ],
+          },
+          { isAgent: true },
+        ],
+      };
+
+      const agents = await Accounts.find(filter).limit(3); // Limit results to 3
+      if (agents.length > 0) {
+        return agents;
+      } else {
+        const agents = await Accounts.find({
+          isAgent: true,
+          isDefaultAgent: true,
+        });
+        console.log("returning derfault", agents);
+        return agents;
+      }
     };
 
     const spaces: any[] = await getListingSpaces()!;
+    const rules: any = await getListingRules()!;
+    const agents: any[] = await getAgents(listing.street, listing.lga);
     for (let space of spaces) {
       const spaceAmenities = await SpaceAmenities.findOne({
         space: space._id,
@@ -373,6 +406,8 @@ export class ListingService {
     }
 
     listing.spaces = spaces;
+    listing.rules = rules.rules;
+    listing.agents = agents;
 
     return {
       status: true,
@@ -420,7 +455,7 @@ export class ListingService {
 
       await delay(3000);
 
-      filter = {account: req.accountId}
+      filter = { account: req.accountId };
       const skip = (page - 1) * limit; // Calculate the number of documents to skip
 
       const options = {
@@ -435,9 +470,9 @@ export class ListingService {
       ]);
 
       const totalPages = Math.ceil(total / limit);
-      const flatbookmarks = []
-      for(let bookmark of bookmarks){
-        flatbookmarks.push(bookmark.listing)
+      const flatbookmarks = [];
+      for (let bookmark of bookmarks) {
+        flatbookmarks.push(bookmark.listing);
       }
       return {
         status: true,

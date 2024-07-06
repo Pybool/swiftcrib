@@ -8,6 +8,8 @@ import { DashboardMainComponent } from './pages/DashboardPages/dashboard-main/da
 import { NoListingsComponent } from './pages/DashboardPages/no-listings/no-listings.component';
 import { PropertiesComponent } from './components/properties/properties.component';
 import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
+import { PropertyDetailsComponent } from './pages/property-details/property-details.component';
+import { ShareModalComponent } from './components/share-modal/share-modal.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +31,9 @@ export const routes: Routes = [
   },
   { path: 'properties/:serviceType', component: PropertiesComponent },
   { path: 'properties/:serviceType/:location', component: PropertiesComponent },
+  { path: 'property/:slug', component: PropertyDetailsComponent },
 
   { path: 'properties-bookmarks', component: BookmarksComponent },
+  { path: 'share', component: ShareModalComponent },
 
 ];

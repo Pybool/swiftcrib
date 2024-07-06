@@ -137,6 +137,8 @@ const ListingsSchema = new Schema({
 
   spaces: [],
   amenities: [],
+  rules: [],
+  agents: []
 });
 
 const Listing = mongoose.model("listing", ListingsSchema);

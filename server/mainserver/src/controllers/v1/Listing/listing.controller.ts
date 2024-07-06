@@ -1,6 +1,7 @@
 import { NextFunction, Response } from "express";
 import Xrequest from "../../../interfaces/extensions.interface";
 import { ListingService } from "../../../services/v1/Listings/listings.basic.service";
+import { ContactService } from "../../../services/v1/contact.service";
 
 const listingController:any = {
   createListing: async (req: Xrequest, res: Response, next: NextFunction) => {
@@ -122,6 +123,20 @@ const listingController:any = {
       next(error);
     }
   },
+
+  makePropertyEnquiry: async (req: Xrequest, res: Response, next: NextFunction) => {
+    try {
+      let status = 400;
+      const result = await ContactService.makePropertyEnquiry(req);
+      if (result) status = result?.code || 200;
+      return res.status(status).json(result);
+    } catch (error: any) {
+      error.status = 500;
+      next(error);
+    }
+  },
+
+  
 
 };
 export default listingController;

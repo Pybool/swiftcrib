@@ -1,0 +1,63 @@
+/* share-modal.component.css */
+body {
+  font-family: Arial, sans-serif;
+}
+.share-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  transition: all 1s;
+}
+.share-modal.show {
+  display: block;
+}
+.share-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%; /* Could be more or less, depending on screen size */
+  max-width: 500px; /* Ensure a maximum width */
+  transition: all 1s;
+}
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+.share-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.share-buttons a {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.whatsapp {
+  background-color: #25d366;
+}
+.instagram {
+  background-color: #c13584;
+}
+.facebook {
+  background-color: #1877f2;
+}

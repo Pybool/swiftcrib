@@ -17,6 +17,14 @@ interface Ifilters {
   serviceType?: string;
 }
 
+interface IcontactUs {
+  name?: string;
+  phone?: string;
+  email?: string;
+  url?: string;
+  message?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -90,6 +98,38 @@ export class ListingService {
   searchListings(page:number , limit:number, filter: Ifilters, loc:string): Observable<any> {
     const requestUrl = `${environment.api}/api/v1/listing/search-listings?searchText=${filter.searchText}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&beds=${filter.beds}&baths=${filter.baths}&serviceType=${filter.serviceType}&loc=${loc || 'ibadan'}&page=${page}&limit=${limit}`;
     return this.http.get(requestUrl).pipe(
+      timeout(defaultTimeOut),
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ProgressEvent) {
+          console.error('Request timed out after 15 seconds.');
+          return of(null);
+        } else {
+          console.error('An error occurred:', error);
+          return throwError(error);
+        }
+      })
+    );
+  }
+
+  fetchProperty(slug:string): Observable<any> {
+    const requestUrl = `${environment.api}/api/v1/listing/fetch-listing-detail?slug=${slug}`;
+    return this.http.get(requestUrl).pipe(
+      timeout(defaultTimeOut),
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ProgressEvent) {
+          console.error('Request timed out after 15 seconds.');
+          return of(null);
+        } else {
+          console.error('An error occurred:', error);
+          return throwError(error);
+        }
+      })
+    );
+  }
+
+  makePropertyEnquiry(data:IcontactUs): Observable<any> {
+    const requestUrl = `${environment.api}/api/v1/listing/make-property-enquiry`;
+    return this.http.post(requestUrl, data).pipe(
       timeout(defaultTimeOut),
       catchError((error: HttpErrorResponse) => {
         if (error.error instanceof ProgressEvent) {

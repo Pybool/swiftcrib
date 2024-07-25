@@ -40,7 +40,7 @@ interface IcontactUs {
   ],
   providers: [AuthService, ListingService],
   templateUrl: './old.html',
-  styleUrl: './old.scss',
+  styleUrl: './property-details.component.scss',
 })
 export class PropertyDetailsComponent implements OnDestroy {
   public routes$: any;
@@ -128,44 +128,28 @@ export class PropertyDetailsComponent implements OnDestroy {
       this.mediaToDisplay = media;
       this.amenitiesToDisplay = amenities || [];
       this.lastSpaceId = spaceId;
-      try {
-        this.dispalyedMediaType?.pause();
-      } catch {}
+      // try {
+      //   this.dispalyedMediaType?.pause();
+      // } catch {}
       this.videoState = 'ended';
       this.removePlayerIconOpacity();
       setTimeout(() => {
-        this.initializeCarousel();
+        this.isMediaLoading = false;
       }, 500);
     }
   }
 
   addPlayerIconOpacity() {
     const playerIcon = document.querySelector('.play-icon-wrapper') as any;
-    const leftCarouselControl = document.querySelector(
-      '.carousel-control-left'
-    ) as any;
-    const rightCarouselControl = document.querySelector(
-      '.carousel-control-right'
-    ) as any;
     if (playerIcon) {
       playerIcon.style.opacity = '1';
-      leftCarouselControl.style.opacity = '1';
-      rightCarouselControl.style.opacity = '1';
     }
   }
 
   removePlayerIconOpacity() {
     const playerIcon = document.querySelector('.play-icon-wrapper') as any;
-    const leftCarouselControl = document.querySelector(
-      '.carousel-control-left'
-    ) as any;
-    const rightCarouselControl = document.querySelector(
-      '.carousel-control-right'
-    ) as any;
     if (playerIcon) {
       playerIcon.style.opacity = '0';
-      leftCarouselControl.style.opacity = '0';
-      rightCarouselControl.style.opacity = '0';
     }
   }
 
@@ -319,9 +303,9 @@ export class PropertyDetailsComponent implements OnDestroy {
     }
   }
 
-  ngAfterViewInit() {
-    this.initializeCarousel();
-  }
+  // ngAfterViewInit() {
+  //   this.initializeCarousel();
+  // }
 
   initializeCarousel() {
     const playIcon = document.querySelector('.play-icon-wrapper') as any;

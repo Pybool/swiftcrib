@@ -222,6 +222,7 @@ export class SearchWidgetComponent implements OnDestroy {
       bedrooms: 'Select Bedroom Type',
       bathrooms: 'Select Bathroom Type',
     };
+    console.log("Possible issue 1")
     this.router.navigate([`/properties/rentals/${this.defaultLocation}`], { queryParams });
   }
 

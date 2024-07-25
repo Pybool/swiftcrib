@@ -6,14 +6,55 @@
     <div>
         <div>
             <app-swiftcrib-header></app-swiftcrib-header>
-
+            <div class="w-full bg-[#020202] block md-s:hidden sticky top-0 min-h-[76px] z-[100]">
+                <div
+                    class="flex-row-sb justify-between w-full bg-[#020202] items-center relative sm:px-9 pl-6 pr-4 py-6 z-10">
+                    <div class="w-6">
+                        <div><svg
+                                width="25" height="20" viewBox="0 0 25 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#ffffff"
+                                    d="M17.1321 11.2338H1.87335C0.851494 11.2338 0 10.573 0 9.77999C0 8.98698 0.851494 8.32617 1.87335 8.32617H17.1662C18.188 8.32617 19.0395 8.98698 19.0395 9.77999C19.0053 10.573 18.188 11.2338 17.1323 11.2338H17.1321Z">
+                                </path>
+                                <path
+                                    d="M10.5245 19.5346H1.87335C0.851494 19.5346 0 18.8738 0 18.0808C0 17.2878 0.851494 16.627 1.87335 16.627H10.5245C11.5464 16.627 12.3979 17.2878 12.3979 18.0808C12.3981 18.9001 11.5466 19.5346 10.5248 19.5346H10.5245Z"
+                                    fill="#ffffff"></path>
+                                <path
+                                    d="M23.0926 2.90764H1.87335C0.851494 2.90764 0 2.24684 0 1.45382C0 0.660806 0.851494 0 1.87335 0H23.1267C24.1485 0 25 0.660806 25 1.45382C24.9658 2.24684 24.1485 2.90764 23.0927 2.90764H23.0926Z"
+                                    fill="#ffffff"></path>
+                            </svg></div>
+                    </div>
+                    <div class="flex flex-col items-end"><a
+                         aria-current="page" href="index.html"
+                            class="router-link-active router-link-exact-active"><img
+                                src="/assets/_nuxt/logo-white.FI7GlC69.svg" alt="logo"
+                                class="object-center h-10"></a></div>
+                    <div class="block">
+                        <div class="relative inline-block text-left">
+                            <div><button id="menu-button"
+                                    type="button" aria-expanded="true" aria-haspopup="true" class="flex items-center">
+                                    <div class="w-[25px] h-[17px] mr-1"><img
+                                         src="icons/countries/ng.svg" alt=""
+                                            class="w-full h-full object-center"></div><svg
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#fff"
+                                        aria-hidden="true" class="w-8 h-5">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <main class="container">
                 <section class="wrapper col-md-12">
                     <div class="main col-md-9">
                         <div class="flex-col">
-                            <div style="gap:30px; align-items: center;justify-content: space-between;" class="flex">
-                                <a class="nav">Back to search</a>
-                                <div class="flex">
+                            <div style="gap:30px; align-items: center;justify-content: space-between;"
+                                class="flex top-bar">
+                                <a href="/properties/rentals/ibadan" class="nav">Back to search</a>
+                                <div class="flex address-nav">
                                     <span class="nav">Home /&nbsp; </span>
                                     <span style="color:gray" class="nav">Rent / &nbsp;</span>
                                     <span style="color:gray" class="nav">{{property?.address}} </span>
@@ -31,50 +72,17 @@
                                         <div *ngIf="isMediaLoading" class="overlay">
                                             <div class="spinner"></div>
                                         </div>
-                                        <div class="carousel" data-carousel="1" data-speed="2000">
-                                            <span style="opacity:0" (mouseenter)="addPlayerIconOpacity()" (mouseleave)="removePlayerIconOpacity()" class="justify-center carousel-control-left flex-col blur">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"  width="60" height="60"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                    <path style="fill: white" d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-                                            </span>
-                                            <span style="opacity:0" (mouseenter)="addPlayerIconOpacity()" (mouseleave)="removePlayerIconOpacity()" class="justify-center carousel-control-right flex-col blur">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="60" height="60"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                    <path style="fill: white" d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-                                            </span>
-                                            <div class="carousel-content skeleton-box">
-                                                <!-- add extra last pic first and extra first pic last for hover effect to work properly  -->
-                                                <img *ngIf="mediaToDisplay[0]?.type==='image'"
-                                                    src="{{serverUrl}}{{mediaToDisplay[0].url}}" (load)="onImageLoad()"
-                                                    alt="image 5" />
-                                                <video (mouseenter)="addPlayerIconOpacity()" (mouseleave)="removePlayerIconOpacity()" controls (play)="onPlay()" (pause)="onPause()" (ended)="onEnded()" class="carousel-video" *ngIf="mediaToDisplay[0]?.type==='video'" (loadeddata)="onVideoLoad()"
-                                                    src="{{serverUrl}}{{mediaToDisplay[0].url}}" alt="image 5"></video>
-                                                <ng-container *ngFor="let media of mediaToDisplay">
-                                                    <ng-container *ngIf="media.type==='image'">
-                                                        <img src="{{serverUrl}}{{media.url}}" (load)="onImageLoad()"
-                                                            alt="image 5" />
-                                                    </ng-container>
-                                                    <ng-container *ngIf="media.type==='video'">
-                                                        <video (mouseenter)="addPlayerIconOpacity()" (mouseleave)="removePlayerIconOpacity()" controls class="carousel-video" (play)="onPlay()" (pause)="onPause()" (ended)="onEnded()" (loadeddata)="onVideoLoad()"
-                                                            src="{{serverUrl}}{{media.url}}" alt="image 5"></video>
-                                                    </ng-container>
-                                                </ng-container>
-                                                <img *ngIf="mediaToDisplay[mediaToDisplay.length-1]?.type==='image'"
-                                                    src="{{serverUrl}}{{mediaToDisplay[mediaToDisplay.length-1].url}}"
-                                                    (load)="onImageLoad()" alt="image 5" />
-                                                <video (mouseenter)="addPlayerIconOpacity()" (mouseleave)="removePlayerIconOpacity()" controls class="carousel-video" (play)="onPlay()" (pause)="onPause()" (ended)="onEnded()" class="carousel-video" *ngIf="mediaToDisplay[mediaToDisplay.length-1]?.type==='video'" (loadeddata)="onVideoLoad()"
-                                                    src="{{serverUrl}}{{mediaToDisplay[mediaToDisplay.length-1].url}}"
-                                                    alt="image 5"></video>
-
-                                            </div>
-                                        </div>
-                                        <div style="display:flex;opacity:1" (mouseenter)="addPlayerIconOpacity()" (click)="playActiveVideo()" class="play-icon-wrapper flex">
+                                        <app-swiftcrib-carousel [attachments]="mediaToDisplay"></app-swiftcrib-carousel>
+                                        <div style="display:flex;opacity:1" (mouseenter)="addPlayerIconOpacity()"
+                                            (click)="playActiveVideo()" class="play-icon-wrapper flex">
                                             <svg class="icon" viewBox="0 0 512 512" width="30" height="30"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                                 <path *ngIf="videoState !== 'playing'" style="fill: white"
                                                     d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                                                 <path *ngIf="videoState === 'playing'" style="fill: white"
-                                                    d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/>
-                                                </svg>
+                                                    d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z" />
+                                            </svg>
 
                                         </div>
                                     </div>
@@ -129,26 +137,26 @@
                                 </div>
                             </div>
 
-                            <!-- <div style="margin-top: 20px;" class="price">
+                            <div style="margin-top: 20px;" class="price">
                                 <h3>Spaces</h3>
-                            </div> -->
+                            </div>
+
 
                             <div class="card-container">
+
                                 <div (click)="setMediaToDisplay('all', allMedia, property.amenities)" class="card">
                                     <h5 style="text-align: left;">Browse All Media</h5>
                                     <h2 style="opacity: 0; height:1px">Browse All Media</h2>
-                                    <img *ngIf="allMedia[1]?.type=='image'"
-                                        src="{{serverUrl}}{{allMedia[1]?.url}}"
-                                        title="Click to show media"
-                                        style="width: 500px!important" class="space">
-                                    <video *ngIf="allMedia[1]?.type=='video'"
-                                        src="{{serverUrl}}{{allMedia[1]?.url}}"
-                                        title="Click to show media"
-                                        style="width: 500px!important"  class="space"></video>
+                                    <img *ngIf="allMedia[1]?.type=='image'" src="{{serverUrl}}{{allMedia[1]?.url}}"
+                                        title="Click to show media" style="width: 500px!important" class="space">
+                                    <video *ngIf="allMedia[1]?.type=='video'" src="{{serverUrl}}{{allMedia[1]?.url}}"
+                                        title="Click to show media" style="width: 500px!important"
+                                        class="space"></video>
 
                                 </div>
                                 <ng-container *ngFor="let space of property.spaces">
-                                    <div (click)="setMediaToDisplay(space._id, space.spaceMedia, space.amenities)" class="card">
+                                    <div (click)="setMediaToDisplay(space._id, space.spaceMedia, space.amenities)"
+                                        class="card">
                                         <h5 style="text-align: left;">{{space.name}}</h5>
                                         <h2 style="opacity: 0; height:1px">{{space.name}}</h2>
                                         <img *ngIf="space.spaceMedia[0]?.type=='image'"
@@ -158,7 +166,7 @@
                                         <video *ngIf="space.spaceMedia[0]?.type=='video'"
                                             src="{{serverUrl}}{{space.spaceMedia[0]?.url}}"
                                             title="Click to show media for {{space?.name}}"
-                                            style="width: 500px!important"  class="space"></video>
+                                            style="width: 500px!important" class="space"></video>
 
                                     </div>
                                 </ng-container>
@@ -225,7 +233,7 @@
                             </div> -->
 
                             <div class="price">
-                                <h3>₦ {{property?.fullPrice.toLocaleString()}}/year</h3>
+                                <h3>₦ {{property?.fullPrice?.toLocaleString()}}/year</h3>
                             </div>
 
                             <div class="flex more-details">
@@ -374,7 +382,8 @@
                                                         <div class="agent-name">{{agent?.firstName || ""}}
                                                             {{agent?.otherName || ""}} {{agent?.lastName || ""}}</div>
                                                         <div class="agent-phone">+234-{{agent?.phone}}</div>
-                                                        <div style="color:olivedrab" class="agent-status">Available</div>
+                                                        <div style="color:olivedrab" class="agent-status">Available
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </a>

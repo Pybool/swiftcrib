@@ -1,18 +1,41 @@
-
-  <div class="carousel" data-carousel="1" data-speed="2000">
-    <span class="carousel-control-left"></span>
-    <span class="carousel-control-right"></span>
-    <div class="carousel-content">
-      <!-- add extra last pic first and extra first pic last for hover effect to work properly  -->
-      <img src="/assets/_images/demo/home1.png" alt="image 5" />
-      <img src="/assets/_images/demo/home2.png" alt="image 1" />
-      <img src="/assets/_images/demo/home3.png" alt="image 2" />
-  
-      <img src="/assets/_images/demo/home4.png" alt="image 3" />
-  
-      <img src="/assets/_images/demo/home2.png" alt="image 4" />
-  
-      <img src="/assets/_images/demo/home1.png" alt="image 5" />
-      <img src="/assets/_images/demo/home4.png" alt="image 1" />
+<section style="width:100%;">
+  <div class="container">
+    <div class="carousel">
+      <!-- <input type="radio" name="slides" checked="checked" id="slide-1"> -->
+      <ng-container *ngFor="let attachment of attachments; let i = index">
+        <input type="radio" name="slides" id="slide-{{i + 1}}">
+      </ng-container>
+      <ul class="carousel__slides">
+        <ng-container *ngFor="let attachment of attachments; let i = index">
+          <li class="carousel__slide">
+            <figure>
+              <div>
+                <img *ngIf="attachment.type==='image'" src="{{serverUrl}}{{attachment?.url}}" (load)="onImageLoad()"
+                  alt="image 5">
+                <video *ngIf="attachment.type==='video'" (mouseenter)="addPlayerIconOpacity()"
+                  (mouseleave)="removePlayerIconOpacity()" controls class="carousel-video" (play)="onPlay()"
+                  (pause)="onPause()" (ended)="onEnded()" (loadeddata)="onVideoLoad()" src="{{serverUrl}}{{attachment?.url}}"
+                  alt="image 5">
+                </video>
+              </div>
+            </figure>
+          </li>
+        </ng-container>
+      </ul>
+      <ul class="carousel__thumbnails">
+        <ng-container *ngFor="let attachment of attachments; let i = index">
+          <li>
+            <label for="slide-{{i + 1}}">
+              <img *ngIf="attachment.type==='image'" src="{{serverUrl}}{{attachment?.url}}" (load)="onImageLoad()"
+                  alt="image 5">
+                <video *ngIf="attachment.type==='video'" class="carousel-video"
+                   src="{{serverUrl}}{{attachment?.url}}"
+                  alt="image 5">
+                </video>
+            </label>
+          </li>
+        </ng-container>
+      </ul>
     </div>
   </div>
+</section>

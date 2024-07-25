@@ -1,4 +1,4 @@
-<div class="w-full bg-black px-10 pt-14 md:pb-20 pb-9" data-v-7450585f>
+<div class="parent w-full bg-black px-10 pt-14 md:pb-20 pb-9" data-v-7450585f>
     <h1 class="text-white md:text-5xl text-3xl mb-6 text-center font-black" data-v-7450585f>
        The better way to <span class="text-gradient" data-v-7450585f>Rent</span>
     </h1>
@@ -8,11 +8,11 @@
        verify your tenants and collect rent automatically with our rental management tools.
     </p>
     <div
-    style="max-width:70vw!important"
-       class="h-[250px] md:h-[74px] mx-auto mt-10 bg-[#1F1F1F] border border-solid border-[#454545]/[0.3] rounded-xl md:rounded-full flex-1 items-center max-w-[250px] md:max-w-[895px] md:pr-4"
+    style="max-width:70vw"
+       class="search-parent h-[250px] md:h-[74px] mx-auto mt-10 bg-[#1F1F1F] border border-solid border-[#454545]/[0.3] rounded-xl md:rounded-full flex-1 items-center max-w-[250px] md:max-w-[895px] md:pr-4"
        data-v-7450585f>
        <div class="flex items-center" data-v-7450585f>
-          <form class="w-full flex flex-col md:flex-row" data-v-7450585f>
+          <form class="search-bar-container w-full flex flex-col md:flex-row" data-v-7450585f>
              <div class="w-full flex-row-sb justify-between" data-v-7450585f>
                 <div data-v-7450585f><label for="search"
                       class="text-[#7C7E8B] text-sm h-0 text-12px relative top-[5px] md:top-[12px] left-[12px] md:left-[25px]"
@@ -123,7 +123,7 @@
                      </ul>
                 </form>
              </div>
-             <div class="flex justify-center w-full md:hidden" data-v-7450585f>
+             <div class="search-btn-parent justify-center w-full" data-v-7450585f>
                 <button [disabled]="searchDisabled()" (click)="searchForApartments()" style="justify-content: center;"
                    class="apply-filter whitespace-nowrap rounded-full font-bold text-sm px-2.5 py-3.5 flex justify-center items-center h-12 select-none disabled:opacity-75 disabled:cursor-not-allowed min-w-[164px] bg-primary-orange py-2.5 px-2.5 ml-3 font-bold text-[#fff]"
                    type="submit">
@@ -131,20 +131,11 @@
                 </button>
                 
              </div>
-             <div class="md:flex items-center justify-center hidden" data-v-7450585f>
-                <button style="justify-content: center;"
-                   class="apply-filter whitespace-nowrap rounded-full font-bold text-sm px-2.5 py-3.5 flex justify-center items-center h-12 select-none disabled:opacity-75 disabled:cursor-not-allowed min-w-[164px] bg-primary-orange py-2.5 px-2.5 ml-3 font-bold text-[#fff]"
-                   type="submit">
-                   <span style="font-size: 16px;" class="">Find a home</span>
-                </button>
-             </div>
+             
           </form>
        </div>
     </div>
     <div *ngIf="priceWarn" class="price-warn reset-filter">Tip: For a more refined search though not compulsory, select both min and max prices</div>
     <div class="reset-filter"><span (click)="resetFilter()" class="reset-filter-text">Reset filter</span></div>
     
-    <a href="https://dashboard.spleet.africa/create-account"
-       class="md-s:hidden text-white font-semibold bg-primary-orange py-2 text-center text-sm rounded-[20px] block hover:text-white w-36 mx-auto mt-6"
-       data-v-7450585f> Create Account </a>
  </div>

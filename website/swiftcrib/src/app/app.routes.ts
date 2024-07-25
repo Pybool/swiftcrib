@@ -10,6 +10,7 @@ import { PropertiesComponent } from './components/properties/properties.componen
 import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
 import { PropertyDetailsComponent } from './pages/property-details/property-details.component';
 import { ShareModalComponent } from './components/share-modal/share-modal.component';
+import { SwiftcribCarouselComponent } from './components/swiftcrib-carousel/swiftcrib-carousel.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,5 +36,6 @@ export const routes: Routes = [
 
   { path: 'properties-bookmarks', component: BookmarksComponent },
   { path: 'share', component: ShareModalComponent },
+  { path: 'test', component: SwiftcribCarouselComponent },
 
 ];

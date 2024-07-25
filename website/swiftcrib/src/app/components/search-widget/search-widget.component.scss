@@ -178,22 +178,22 @@ label,
 .reset-filter {
   width: 100%;
   text-align: center;
-//   padding: 15px;
+  //   padding: 15px;
   cursor: pointer;
   padding-top: 8px;
 }
 
-.reset-filter-text{
-    color: white;
+.reset-filter-text {
+  color: white;
 }
 
 .reset-filter-text:hover {
   color: orange;
 }
 
-.price-warn{
-    color:burlywood;
-    // font-size: 10px;
+.price-warn {
+  color: burlywood;
+  // font-size: 10px;
 }
 
 .price-range-content li {
@@ -246,4 +246,142 @@ label,
 
 .show {
   display: block !important;
+}
+
+/* Extra Small Devices, Phones (0px to 599px) */
+@media only screen and (max-width: 599px) {
+  /* Styles for small phones */
+  .search-bar-container {
+    flex-wrap: wrap;
+  }
+
+  .parent {
+    height: 80vh;
+  }
+
+  .price-range-content-min,
+  .price-range-content-max,
+  .bedroom-dropdown-content,
+  .bathroom-dropdown-content {
+    width: 100%;
+    margin-right: 0px;
+    li{
+      padding-bottom: 10px;
+    }
+  }
+
+  .price-warn{
+    display:none;
+  }
+}
+
+/* Small Devices, Larger Phones (600px to 767px) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+  /* Styles for larger phones */
+  .search-bar-container {
+    flex-wrap: wrap;
+  }
+  .parent {
+    height: 80vh;
+  }
+
+  .price-range-content-min,
+  .price-range-content-max,
+  .bedroom-dropdown-content,
+  .bathroom-dropdown-content {
+    width: 100%;
+    margin-right: 0px;
+  }
+  li{
+    padding-bottom: 10px;
+  }
+
+  .price-warn{
+    display:none;
+  }
+
+  .scroll-smooth{
+    justify-content: center!important;
+  }
+}
+
+/* Medium Devices, Tablets (768px to 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* Styles for tablets */
+  .search-bar-container {
+    flex-wrap: wrap;
+  }
+
+  .search-parent{
+    max-width: 95vw!important;
+   padding-right: 0rem!important; 
+          
+  }
+
+  .reset-filter{
+    display:none;
+  }
+
+  .parent {
+    height: 42vh;
+  }
+
+  .apply-filter{
+    width: 300px!important;
+  }
+
+  .search-btn-parent{
+    justify-content: center!important;
+    display:flex
+  }
+
+  .scroll-smooth{
+    justify-content: center!important;
+  }
+
+
+}
+
+/* Large Devices, Desktops (992px to 1199px) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  /* Styles for desktops */
+  .scroll-smooth{
+    justify-content: center!important;
+  }
+
+  .search-bar-container {
+    flex-wrap: wrap;
+  }
+
+  .search-parent{
+    max-width: 95vw!important;
+   padding-right: 0rem!important; 
+          
+  }
+
+  .reset-filter{
+    display:none;
+  }
+
+  .parent {
+    height: 42vh;
+  }
+
+  .apply-filter{
+    width: 300px!important;
+  }
+
+  .search-btn-parent{
+    justify-content: center!important;
+    display:flex
+  }
+
+  .scroll-smooth{
+    justify-content: center!important;
+  }
+}
+
+/* Extra Large Devices, Large Desktops (1200px and above) */
+@media only screen and (min-width: 1200px) {
+  /* Styles for large desktops */
 }

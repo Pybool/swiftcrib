@@ -100,7 +100,7 @@ export class PropertiesComponent {
     window.scrollTo(0, 0);
   }
 
-  fetchListings() {
+  fetchListings(changeLocation:boolean=true) {
     this.loading = true;
     this.listingService
       .searchListings(
@@ -113,7 +113,12 @@ export class PropertiesComponent {
       .subscribe(
         (response: any) => {
           if (response?.status) {
-            this.properties.push(...response.data);
+            // this.properties.push(...response.data);
+            response.data.forEach((_property: any) => {
+              if (!this.properties.find((property: any) => property._id === _property._id)) {
+                this.properties.push(_property);
+              }
+            });
             this.totalPages = response.totalPages;
             this.loading = false;
             this.page++;
@@ -123,7 +128,10 @@ export class PropertiesComponent {
           } else {
             this.loading = false;
           }
-          this.changeLocation(this.filters);
+          if(changeLocation){
+            this.changeLocation(this.filters);
+          }
+          
         },
         (error: any) => {
           this.loading = false;
@@ -144,7 +152,7 @@ export class PropertiesComponent {
       )
       .subscribe(() => {
         if (this.page <= this.totalPages) {
-          this.fetchListings();
+          this.fetchListings(false);
         }
       });
   }
@@ -220,6 +228,7 @@ export class PropertiesComponent {
     }
 
     // Navigate to the route with query parameters
+    console.log("Change location is culprit")
     this.router.navigate([`/properties/rentals/${this.defaultLocation}`], {
       queryParams,
     });

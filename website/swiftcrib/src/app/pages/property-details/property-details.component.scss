@@ -6,7 +6,6 @@
 
 .aside {
   height: 100vh;
-  //   background: green;
 }
 
 .nav {
@@ -14,7 +13,6 @@
 }
 
 .media-display {
-  height: 45vh;
   justify-content: space-between;
   padding: 0px !important;
 }
@@ -69,11 +67,6 @@ textarea {
   border: 1px solid ghostwhite;
 }
 
-.visuals-section {
-  margin-top: 20px;
-  justify-content: space-between;
-}
-
 .play-icon-wrapper {
   position: absolute;
   top: 50%;
@@ -85,6 +78,7 @@ textarea {
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
+  transition: all 1s;
   background-color: rgba(124, 123, 123, 0.2); /* Semi-transparent white */
   border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent white border */
   backdrop-filter: blur(10px); /* Apply blur effect */
@@ -109,6 +103,7 @@ textarea {
 
 .play-icon-wrapper:hover {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  //   opacity: 1;
 }
 
 .main-carousel {
@@ -173,7 +168,7 @@ textarea {
   font-size: 16px;
 }
 
-div.price{
+div.price {
   background: ghostwhite;
   padding: 20px;
 }
@@ -213,8 +208,8 @@ div.price{
   cursor: pointer;
   background: ghostwhite;
   border-radius: 7px;
-  text-decoration: none!important;
-  color:green;
+  text-decoration: none !important;
+  color: green;
   font-weight: 500;
 }
 
@@ -225,39 +220,77 @@ div.price{
   border-top-right-radius: 15px;
 }
 
-.space-cube:hover {
-  transform: scale(1.05);
-  border: 1px solid gray;
-}
-
 .space-name {
   padding-left: 10px;
   font-weight: 500;
 }
 
-.visuals {
-  width: 24%;
+.space {
   height: 90px;
   border-radius: 15px;
-  background: bisque;
+  background: whitesmoke;
   position: relative; /* Ensure the pseudo-element is positioned relative to the div */
-  background: url("https://images.pexels.com/photos/1874613/pexels-photo-1874613.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
-    no-repeat center center; /* Example background image */
+  object-fit: cover;
   background-size: cover; /* Cover the whole div */
   cursor: pointer;
   transition: all 0.75s;
+  // margin-bottom: 10px;
 }
 
-.visuals::before {
-  content: "";
+.justify-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.blur:hover {
+  background-color: rgba(124, 123, 123, 0.2); /* Semi-transparent white */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent white border */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+}
+
+.carousel-video {
+  object-fit: contain !important;
+}
+
+.carousel-content:hover .play-icon-wrapper,
+.carousel-control-left {
+  opacity: 1;
+}
+
+.centered {
+  align-items: center;
+  cursor: pointer;
+}
+
+.visuals-section {
+  // margin-top: 20px;
+  justify-content: space-between;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 20px;
+}
+
+.media-container {
+  position: relative;
+  display: inline-block; /* Or block depending on your layout */
+  transition: all 0.75s;
+}
+
+.space:hover {
+  //   transform: scale(1.05);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.centered-text {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
-  z-index: 1; /* Ensure the overlay is above the background but below any potential content inside .visuals */
+  top: 50%;
+  left: 50%;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  color: white; /* Change the text color to contrast with the image */
+  font-size: 16px; /* Adjust the font size as needed */
+  font-weight: bold; /* Optional: makes the text bold */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: adds a shadow for better visibility */
 }
 
 .visuals:hover {
@@ -265,21 +298,6 @@ div.price{
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
 }
 
-.visuals > div.flex-col {
-  align-items: center;
-  z-index: 1;
-  margin-top: 12px;
-}
-
-.visuals > div.flex-col > svg {
-  align-items: center;
-  z-index: 1;
-}
-
-.visuals > div.flex-col > div {
-  color: white;
-  z-index: 1;
-}
 .amenities {
   margin-top: 20px;
   flex-wrap: wrap;
@@ -460,6 +478,7 @@ input {
   width: 10%;
   cursor: pointer;
   z-index: 1;
+  transition: all 1s;
 }
 
 .carousel .carousel-control-right {
@@ -470,4 +489,154 @@ input {
   width: 10%;
   cursor: pointer;
   z-index: 1;
+  transition: all 1s;
+}
+
+.carousel-control-left > svg,
+.carousel-control-right > svg {
+  background: black;
+  border-radius: 50%;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.card-container {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+}
+
+.card {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 250px;
+  /* Adjust card width as needed */
+  text-align: center;
+}
+
+/* Extra Small Devices, Phones (0px to 599px) */
+@media only screen and (max-width: 599px) {
+  /* Styles for small phones */
+  .address-nav {
+    white-space: nowrap;
+  }
+
+  .top-bar {
+    flex-wrap: wrap;
+  }
+
+  section.wrapper {
+    margin: 0px;
+  }
+
+  .details-address,
+  .details {
+    width: 100%;
+  }
+
+  .more-details,
+  .space-amenities {
+    flex-wrap: wrap !important;
+  }
+
+  .space-amenities {
+    height: fit-content !important;
+  }
+
+  .assets {
+    margin: 10px !important;
+    margin-left: 0px !important;
+  }
+
+  .vision {
+    height: fit-content !important;
+  }
+
+  aside {
+    margin-top: 22px;
+  }
+
+  .col-md-3,
+  .container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .main {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+  }
+}
+
+/* Small Devices, Larger Phones (600px to 767px) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+  /* Styles for larger phones */
+  .address-nav {
+    white-space: nowrap;
+  }
+
+  .top-bar {
+    flex-wrap: wrap;
+  }
+
+  section.wrapper {
+    margin: 0px;
+  }
+
+  .more-details,
+  .space-amenities {
+    flex-wrap: wrap !important;
+  }
+
+  .details-address,
+  .details {
+    width: 100%;
+  }
+
+  .space-amenities {
+    height: fit-content !important;
+  }
+
+  .assets {
+    margin: 10px !important;
+    margin-left: 0px !important;
+  }
+
+  .vision {
+    height: fit-content !important;
+  }
+
+  aside {
+    margin-top: 22px;
+  }
+
+  .col-md-3,
+  .container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .main {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+  }
+}
+
+/* Medium Devices, Tablets (768px to 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* Styles for tablets */
+}
+
+/* Large Devices, Desktops (992px to 1199px) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  /* Styles for desktops */
+}
+
+/* Extra Large Devices, Large Desktops (1200px and above) */
+@media only screen and (min-width: 1200px) {
+  /* Styles for large desktops */
 }

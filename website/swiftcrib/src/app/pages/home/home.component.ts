@@ -168,6 +168,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
+  getProperty($event: any, slug: string) {
+    const classList = Array.from($event.target.classList);
+    if (
+      classList.includes('no-prop') == false
+    ) {
+      this.router.navigateByUrl(`/property/${slug}`);
+    }
+  }
+
 
   ngOnDestroy() {
     if (this.scrollSubscription) {

@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../services/auth.service';
 
@@ -56,7 +56,8 @@ export class BookmarksComponent {
     public listingService: ListingService,
     public element: ElementRef,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -66,16 +67,12 @@ export class BookmarksComponent {
     this.setupScrollEventListener();
     if (!this.user) {
       try {
-        this.bookMarks =
-          JSON.parse(localStorage.getItem('swiftcrib-bookmark') as string) ||
-          [];
+        this.bookMarks = JSON.parse(localStorage.getItem('swiftcrib-bookmark') as string) || [];
       } catch {
         this.bookMarks = [];
       }
     }
-
     this.fetchBookmarks();
-
     console.log('Bookmarks ', this.bookMarks);
   }
 
@@ -176,6 +173,15 @@ export class BookmarksComponent {
 
   searchForApartments() {
     console.log('Searching for ', this.searchText);
+  }
+
+  getProperty($event: any, slug: string) {
+    const classList = Array.from($event.target.classList);
+    if (
+      classList.includes('no-prop') == false
+    ) {
+      this.router.navigateByUrl(`/property/${slug}`);
+    }
   }
 
   ngOnDestroy() {

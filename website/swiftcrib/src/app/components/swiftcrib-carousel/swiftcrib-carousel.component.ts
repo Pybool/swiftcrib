@@ -1,103 +1,114 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-swiftcrib-carousel',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './swiftcrib-carousel.component.html',
-  styleUrl: './swiftcrib-carousel.component.scss'
+  styleUrl: './swiftcrib-carousel.component.scss',
 })
-export class SwiftcribCarouselComponent implements OnInit, AfterViewInit {
-  @ViewChild('carousel', { static: true }) carouselRef: ElementRef | undefined;
+export class SwiftcribCarouselComponent {
+  public serverUrl:string = environment.api;
+  @Input() attachments: { type?: string; url?: string }[] = [
+    {
+        "type": "video",
+        "url": "/listing-attachments/04-07-2024/1fed6204-616c-49f2-a2be-155821c18234-4301618-hd_1920_1080_30fps.mp4"
+    },
+    {
+        "type": "image",
+        "url": "/listing-attachments/04-07-2024/0f34a4ac-05ce-4c51-822a-4a2f41046ce9-pexels-binyaminmellish-1396132.jpg"
+    },
+    {
+        "type": "image",
+        "url": "/listing-attachments/04-07-2024/96abb5c9-04fd-4817-8aa5-d9856cce9cbc-pexels-binyaminmellish-1396122.jpg"
+    },
+    {
+        "type": "image",
+        "url": "/listing-attachments/04-07-2024/73b08415-d17f-42ee-87d8-0c6259348721-pexels-arabiclogos-453201.jpg"
+    }
+]
+  public videoState?: string;
 
-  carousels: NodeList | undefined;
-  speed: number | undefined;
-  carouselLength!: number;
-  width!: number;
-  count!: number;
-  counterIncrement!: number;
-  interval: any;
+  ngAfterViewInit(): void {}
 
-  ngAfterViewInit(): void {
-    this.carousels = document.querySelectorAll('.carousel');
-
-    if (this.carousels.length > 0) {
-      this.carousels.forEach((carousel: any) => this.initCarousel(carousel));
+  addPlayerIconOpacity() {
+    const playerIcon = document.querySelector('.play-icon-wrapper') as any;
+    const leftCarouselControl = document.querySelector(
+      '.carousel-control-left'
+    ) as any;
+    const rightCarouselControl = document.querySelector(
+      '.carousel-control-right'
+    ) as any;
+    if (playerIcon) {
+      playerIcon.style.opacity = '1';
+      leftCarouselControl.style.opacity = '1';
+      rightCarouselControl.style.opacity = '1';
     }
   }
 
-  ngOnInit(): void {
-    // Optional: You can use this for any initialization logic before view is rendered
+  removePlayerIconOpacity() {
+    const playerIcon = document.querySelector('.play-icon-wrapper') as any;
+    const leftCarouselControl = document.querySelector(
+      '.carousel-control-left'
+    ) as any;
+    const rightCarouselControl = document.querySelector(
+      '.carousel-control-right'
+    ) as any;
+    if (playerIcon) {
+      playerIcon.style.opacity = '0';
+      leftCarouselControl.style.opacity = '0';
+      rightCarouselControl.style.opacity = '0';
+    }
   }
 
-  initCarousel(carousel: any) {
-    const carouselContent = carousel.querySelector('.carousel-content');
-    this.speed = parseInt(carousel.dataset.speed, 10) || 2000; // Default speed if not set
-    this.carouselLength = carouselContent.children.length;
-    this.width = window.innerWidth;
-    this.count = this.width;
-    this.counterIncrement = this.width;
+  async playActiveVideo() {
+    // console.log(this.dispalyedMediaType);
+    // if (this.videoState !== 'playing') {
+    //   this.dispalyedMediaType?.play();
+    // } else {
+    //   this.dispalyedMediaType?.pause();
+    // }
 
-    // Initial transform
-    carouselContent.style.transform = `translateX(-${this.width}px)`;
-
-    this.startCarousel(carouselContent);
-    this.addClickEvents(carousel);
-    this.addHoverEffects(carousel);
+    // const playerIcon = document.querySelector('.play-icon-wrapper') as any;
+    // playerIcon.style.opacity = '0';
   }
 
-  startCarousel(carouselContent: any) {
-    this.interval = setInterval(() => {
-      if (this.count >= (this.counterIncrement - 2) * (this.carouselLength - 2)) {
-        this.count = 0;
-        carouselContent.style.transform = `translateX(-${this.count}px)`;
-      }
-      this.count += this.counterIncrement;
-      carouselContent.style.transform = `translateX(-${this.count}px)`;
-    }, this.speed);
+  removeMediaLoader() {
+    setTimeout(() => {
+      // this.isMediaLoading = false;
+    }, 2000);
   }
 
-  addClickEvents(carousel: any) {
-    const carouselContent = carousel.querySelector('.carousel-content');
-    const leftButton = carousel.querySelector('.carousel button:nth-child(1)');
-    const rightButton = carousel.querySelector('.carousel button:nth-child(2)');
-
-    leftButton.addEventListener('click', () => {
-      this.count -= this.width;
-      carouselContent.style.transform = `translateX(-${this.count - 100}px)`; // Added buffer for smooth transition
-      // this.handleEdgeCase(this.count, 'left');
-    });
-
-    rightButton.addEventListener('click', () => {
-      this.count += this.width;
-      carouselContent.style.transform = `translateX(-${this.count + 100}px)`; // Added buffer for smooth transition
-      // this.handleEdgeCase(this.count, 'right');
-    });
+  onImageLoad() {
+    this.removeMediaLoader();
   }
 
-  addHoverEffects(carousel: any) {
-    const carouselContent = carousel.querySelector('.carousel-content');
-    const leftButton = carousel.querySelector('.carousel button:nth-child(1)');
-    const rightButton = carousel.querySelector('.carousel button:nth-child(2)');
-
-    leftButton.addEventListener('mouseenter', () => {
-      carouselContent.style.transform = `translateX(-${this.count - 100}px)`;
-      clearInterval(this.interval);
-    });
-
-    leftButton.addEventListener('mouseleave', () => {
-      carouselContent.style.transform = `translateX(-${this.count}px)`;
-      this.interval = setInterval(() => this.startCarousel(carouselContent), this.speed);
-    });
-
-    rightButton.addEventListener('mouseenter', () => {
-      carouselContent.style.transform = `translateX(-${this.count + 100}px)`;
-      clearInterval(this.interval);
-    });
-
-    rightButton.addEventListener('mouseleave', () => {
-      carouselContent.style.transform = `translateX(-${this.count}px)`;
-      this.interval = setInterval(() => this.startCarousel(carouselContent), this.speed);
-    });
+  onVideoLoad() {
+    this.removeMediaLoader();
   }
+
+  onPlay() {
+    this.videoState = 'playing';
+    this.addPlayerIconOpacity();
+  }
+
+  onPause() {
+    this.videoState = 'paused';
+  }
+
+  onEnded() {
+    this.videoState = 'ended';
+  }
+
+  
+
 }

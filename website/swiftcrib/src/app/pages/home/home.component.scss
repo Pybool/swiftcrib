@@ -133,12 +133,6 @@ p {
   font-size: 16px;
 }
 
-// .container{
-//   margin-right: 20px!important;
-//   margin-left: 20px!important;
-// }
-
-
 #loading-container {
   position: fixed;
   width: 100%;
@@ -167,14 +161,9 @@ p {
   display: none;
 }
 
-
-
-
-.price-range {
+.price-range, .pointer, .saved-cont {
   cursor: pointer;
 }
-
-
 
 .price-range-content li {
   margin-top: 20px;
@@ -184,7 +173,6 @@ p {
 .inner-link{
   font-weight: 700;
   font-size: large!important;
-  /* color: black!important; */
 }
 
 .inner-link:hover{
@@ -208,7 +196,6 @@ p {
   transition: opacity 2s ease-in-out, visibility 2s ease-in-out;
   width: 170px;
 }
-
 
 .show{
   display: block!important;

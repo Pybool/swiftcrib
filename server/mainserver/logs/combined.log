@@ -3034,3 +3034,81 @@ info:
  {"timestamp":"2024-07-05T10:16:19.244+01:00"}
 info: Mongoose connected to db {"timestamp":"2024-07-05T10:16:19.349+01:00"}
 info: MongoDB connected Successfully. {"timestamp":"2024-07-05T10:16:19.361+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-07-06T10:05:31.640+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-07-06T10:05:31.661+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8200  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8200...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-07-06T10:05:49.735+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-07-06T10:05:49.839+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-07-06T10:05:49.867+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-07-08T16:54:34.170+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-07-08T16:54:34.220+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8200  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8200...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-07-08T16:55:09.036+01:00"}
+info: Mongoose connection is disconnected {"timestamp":"2024-07-08T16:55:09.111+01:00"}
+info: connection timed out {"timestamp":"2024-07-08T16:55:09.158+01:00"}
+info: connection timed out {"timestamp":"2024-07-08T16:55:09.174+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-07-08T16:56:00.240+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-07-08T16:56:00.247+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8200  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8200...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-07-08T16:56:27.031+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-07-08T16:56:27.156+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-07-08T16:56:27.183+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-07-08T19:31:45.238+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-07-08T19:31:45.250+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8200  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8200...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-07-08T19:32:00.488+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-07-08T19:32:00.524+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-07-08T19:32:00.527+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-07-09T10:14:31.620+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-07-09T10:14:31.625+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8200  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8200...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-07-09T10:14:38.935+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-07-09T10:14:38.986+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-07-09T10:14:38.990+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-07-09T12:24:02.625+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-07-09T12:24:02.640+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8200  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8200...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-07-09T12:24:28.808+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-07-09T12:24:28.914+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-07-09T12:24:28.921+01:00"}
+info: MONGO_URI: mongodb://127.0.0.1:27017 {"timestamp":"2024-07-25T14:59:17.269+01:00"}
+info: DATABASE NAME SWIFTCRIB {"timestamp":"2024-07-25T14:59:17.276+01:00"}
+info: 
+ ---------------------------------------------------------------
+|  SWIFTCRIB DEVELOPMENT SERVER IS RUNNING ON 0.0.0.0:8200  |
+|  😊 Development Server started successfully.  |
+|  🎧 Listening on port 8200...  |
+ ---------------------------------------------------------------
+ {"timestamp":"2024-07-25T14:59:25.631+01:00"}
+info: Mongoose connected to db {"timestamp":"2024-07-25T14:59:25.701+01:00"}
+info: MongoDB connected Successfully. {"timestamp":"2024-07-25T14:59:25.716+01:00"}
